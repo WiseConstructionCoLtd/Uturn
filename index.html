@@ -1,46 +1,127 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-TW" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- 搜尋引擎標題：搜尋 U-Turn 時會顯示的主標題 -->
-    <title>U-Turn 轉角好車 - 官方網站與 Android App 下載</title>
+    <!-- 搜尋引擎標題 -->
+    <title>U-Turn 轉角好車 | 買車安心、賣車省心的智慧車輛買賣平台</title>
     
-    <meta name="description" content="U-Turn 轉角好車官方網站。提供專業便利的車輛買賣平台與即時資訊服務，立即前往 Google Play 免費下載 App！">
-    <meta name="keywords" content="U-Turn, U-Turn 轉角好車, 轉角好車, 車輛買賣, 二手車買賣">
+    <meta name="description" content="U-Turn 轉角好車官方網站。擺脫傳統車商層層剝削，提供透明車況、極速上架與即時聊聊功能，立即下載 Android App 找好車、賣好價！">
+    <meta name="keywords" content="U-Turn, U-Turn 轉角好車, 轉角好車, 車輛買賣, 二手車買賣, 中古車, 買車, 賣車 App">
 
-    <!-- 請在步驟 3 取得 Google 驗證碼後貼上此處 -->
+    <!-- Google 驗證碼保留位 -->
     <!-- <meta name="google-site-verification" content="您的驗證碼" /> -->
 
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans">
-    <header class="bg-slate-900 text-white py-20 px-6 text-center">
-        <h1 class="text-4xl md:text-6xl font-bold mb-4">U-Turn 轉角好車</h1>
-        <p class="text-slate-300 text-lg mb-8">專為車主與買家打造的便利車輛買賣平台</p>
-        <a href="https://play.google.com/store/apps/details?id=com.uturn.car.app" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-md transition">
-            前往 Google Play 下載 App
-        </a>
+<body class="bg-slate-50 text-slate-900 font-sans antialiased">
+
+    <!-- Hero Section (首頁主視覺區) -->
+    <header class="bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-white py-24 px-6 text-center relative overflow-hidden">
+        <!-- 裝飾光暈 -->
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        
+        <div class="max-w-3xl mx-auto relative z-10">
+            <!-- 信任標籤 -->
+            <div class="inline-flex items-center gap-2 bg-blue-500/20 border border-blue-400/30 text-blue-300 text-sm font-medium px-4 py-1.5 rounded-full mb-6 backdrop-blur-sm">
+                <span>⭐ 數萬車主與買家的共同選擇</span>
+            </div>
+            
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight leading-tight">
+                買車安心、賣車省心<br><span class="text-blue-400">您的專屬用車交易平台</span>
+            </h1>
+            
+            <p class="text-slate-300 text-lg md:text-xl mb-10 leading-relaxed">
+                告別繁瑣流程與傳統車商層層剝削。在 U-Turn，直接對接理想車主與買家，享受最透明、高效的二手車交易體驗！
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="https://play.google.com/store/apps/details?id=com.uturn.car.app" target="_blank" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-8 rounded-xl shadow-lg shadow-blue-600/30 transition-all duration-300 transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M3.609 1.814L13.792 12 3.61 22.186a1.272 1.272 0 01-.22-.72V2.534c0-.276.08-.535.22-.72zM15.208 13.416l2.122 2.122-10.82 6.25 8.698-8.372zm0-2.832L6.51 2.212l10.82 6.25-2.122 2.122zM17.862 14.75l3.203-1.85c.783-.452.783-1.188 0-1.64l-3.203-1.85-2.122 2.122 2.122 2.118z"/></svg>
+                    立即免費下載 Google Play
+                </a>
+            </div>
+        </div>
     </header>
     
-    <main class="max-w-4xl mx-auto py-12 px-6 grid md:grid-cols-3 gap-6">
-        <div class="bg-white p-6 rounded-xl shadow border border-slate-200">
-            <h3 class="font-bold text-lg mb-2 text-blue-600">透明資訊</h3>
-            <p class="text-sm text-slate-600">完整車況呈現，買賣溝通更安心。</p>
+    <!-- Features Section (核心優勢：轉化為客戶利益) -->
+    <main class="max-w-6xl mx-auto py-16 px-6">
+        <div class="text-center mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold mb-3">為什麼大家都選擇 U-Turn？</h2>
+            <p class="text-slate-600">我們解決您在二手車買賣中最擔心的所有痛點</p>
         </div>
-        <div class="bg-white p-6 rounded-xl shadow border border-slate-200">
-            <h3 class="font-bold text-lg mb-2 text-blue-600">快速上架</h3>
-            <p class="text-sm text-slate-600">簡化刊登流程，輕鬆尋找目標買家。</p>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- 卡片 1 -->
+            <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 group">
+                <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center font-bold text-xl mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                    🛡️
+                </div>
+                <h3 class="font-bold text-xl mb-3 text-slate-800">拒絕隱瞞，車況超透明</h3>
+                <p class="text-slate-600 leading-relaxed">完整車況真實呈現、歷史紀錄有跡可循。拒絕當冤大頭，讓您買得放心、開得安心。</p>
+            </div>
+
+            <!-- 卡片 2 -->
+            <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 group">
+                <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center font-bold text-xl mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                    ⚡
+                </div>
+                <h3 class="font-bold text-xl mb-3 text-slate-800">3分鐘極速刊登</h3>
+                <p class="text-slate-600 leading-relaxed">簡化繁瑣的刊登流程，動動手指輕鬆上架愛車，迅速接觸全台百萬潛在買家，賣出好價格。</p>
+            </div>
+
+            <!-- 卡片 3 -->
+            <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 group">
+                <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center font-bold text-xl mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                    💬
+                </div>
+                <h3 class="font-bold text-xl mb-3 text-slate-800">即時聊聊，絕不錯過</h3>
+                <p class="text-slate-600 leading-relaxed">內建即時推播通知，買賣雙方一對一直接對話、約看車，成交速度快人一步。</p>
+            </div>
         </div>
-        <div class="bg-white p-6 rounded-xl shadow border border-slate-200">
-            <h3 class="font-bold text-lg mb-2 text-blue-600">即時通知</h3>
-            <p class="text-sm text-slate-600">內建推播訊息，絕不錯過任何重要買賣詢問。</p>
+
+        <!-- 額外加分區塊：簡單三步驟 -->
+        <section class="mt-20 bg-blue-50/60 border border-blue-100 rounded-3xl p-8 md:p-12 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold mb-4 text-slate-900">輕鬆三步驟，開啟您的用車新體驗</h2>
+            <p class="text-slate-600 mb-10">無論想換新車或幫愛車找新家，從這裡開始只需一分鐘</p>
+            
+            <div class="grid md:grid-cols-3 gap-6 text-left">
+                <div class="bg-white p-6 rounded-xl shadow-xs">
+                    <div class="text-blue-600 font-extrabold text-lg mb-2">Step 01</div>
+                    <h4 class="font-bold text-slate-800 mb-1">下載 App</h4>
+                    <p class="text-sm text-slate-600">前往 Google Play 免費下載安裝 U-Turn。</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-xs">
+                    <div class="text-blue-600 font-extrabold text-lg mb-2">Step 02</div>
+                    <h4 class="font-bold text-slate-800 mb-1">拍照上架 / 瀏覽好車</h4>
+                    <p class="text-sm text-slate-600">輕鬆建立刊登資訊，或依照需求篩選理想愛車。</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-xs">
+                    <div class="text-blue-600 font-extrabold text-lg mb-2">Step 03</div>
+                    <h4 class="font-bold text-slate-800 mb-1">即時溝通、順利成交</h4>
+                    <p class="text-sm text-slate-600">透過內建即時對話敲定細節，安心完成交易。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 底部行動呼籲 (CTA Section) -->
+        <div class="mt-20 text-center bg-slate-900 text-white rounded-3xl p-10 md:p-16 relative overflow-hidden">
+            <div class="relative z-10 max-w-2xl mx-auto">
+                <h2 class="text-3xl font-bold mb-4">準備好尋找您的下一輛好車了嗎？</h2>
+                <p class="text-slate-300 mb-8">立即加入 U-Turn 轉角好車，享受聰明、安全又省時的車輛買賣服務！</p>
+                <a href="https://play.google.com/store/apps/details?id=com.uturn.car.app" target="_blank" class="inline-block bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-10 rounded-xl shadow-lg transition-all duration-300">
+                    立即前往 Google Play 下載
+                </a>
+            </div>
         </div>
     </main>
 
-    <footer class="text-center py-6 text-sm text-slate-500">
-        &copy; 2026 U-Turn. All Rights Reserved.
+    <!-- Footer -->
+    <footer class="text-center py-8 text-sm text-slate-500 border-t border-slate-200">
+        <p>&copy; 2026 U-Turn 轉角好車. All Rights Reserved.</p>
     </footer>
+
 </body>
 </html>
