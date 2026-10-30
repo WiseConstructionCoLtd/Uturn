@@ -33,6 +33,7 @@
             <div class="hidden xl:flex items-center gap-1 text-sm font-medium bg-slate-800/80 p-1.5 rounded-2xl border border-slate-700/60 shadow-inner">
                 <button onclick="switchTab('cars')" id="nav-btn-cars" class="nav-tab-btn px-3.5 py-2 rounded-xl transition-all text-blue-400 bg-blue-950/80 border border-blue-700/50 shadow-sm cursor-pointer">車源大廳</button>
                 <button onclick="switchTab('sell-car')" id="nav-btn-sell-car" class="nav-tab-btn px-3.5 py-2 rounded-xl transition-all text-slate-300 hover:text-white hover:bg-slate-800 cursor-pointer">刊登賣車</button>
+                <button onclick="switchTab('my-cars')" id="nav-btn-my-cars" class="nav-tab-btn px-3.5 py-2 rounded-xl transition-all text-slate-300 hover:text-white hover:bg-slate-800 cursor-pointer">我的刊登汽車</button>
                 <button onclick="switchTab('dealer-acquire')" id="nav-btn-dealer-acquire" class="nav-tab-btn px-3.5 py-2 rounded-xl transition-all text-slate-300 hover:text-white hover:bg-slate-800 cursor-pointer">高價收車</button>
                 <button onclick="switchTab('loan-calc')" id="nav-btn-loan-calc" class="nav-tab-btn px-3.5 py-2 rounded-xl transition-all text-slate-300 hover:text-white hover:bg-slate-800 cursor-pointer">車貸試算</button>
                 <button onclick="switchTab('transfer-guide')" id="nav-btn-transfer-guide" class="nav-tab-btn px-3.5 py-2 rounded-xl transition-all text-slate-300 hover:text-white hover:bg-slate-800 cursor-pointer">過戶指南</button>
@@ -63,6 +64,7 @@
         <div id="mobile-menu" class="hidden xl:hidden bg-slate-900 border-b border-slate-800 px-6 py-4 space-y-2">
             <button onclick="switchTab('cars'); toggleMobileMenu();" class="block w-full text-left text-slate-300 hover:text-blue-400 py-2 font-medium">車源大廳</button>
             <button onclick="switchTab('sell-car'); toggleMobileMenu();" class="block w-full text-left text-slate-300 hover:text-blue-400 py-2 font-medium">刊登賣車</button>
+            <button onclick="switchTab('my-cars'); toggleMobileMenu();" class="block w-full text-left text-slate-300 hover:text-blue-400 py-2 font-medium">我的刊登汽車</button>
             <button onclick="switchTab('dealer-acquire'); toggleMobileMenu();" class="block w-full text-left text-slate-300 hover:text-blue-400 py-2 font-medium">高價收車</button>
             <button onclick="switchTab('loan-calc'); toggleMobileMenu();" class="block w-full text-left text-slate-300 hover:text-blue-400 py-2 font-medium">車貸試算</button>
             <button onclick="switchTab('transfer-guide'); toggleMobileMenu();" class="block w-full text-left text-slate-300 hover:text-blue-400 py-2 font-medium">過戶指南</button>
@@ -268,7 +270,25 @@
             </div>
         </section>
 
-        <!-- 分頁 3：高價收車 (Dealer Acquisition Tab) [已更新名稱與直接聯絡資訊] -->
+        <!-- 新增分頁：我的刊登汽車 (My Cars Tab) -->
+        <section id="tab-my-cars" class="tab-content hidden">
+            <div class="max-w-4xl mx-auto space-y-10">
+                <div class="bg-gradient-to-br from-slate-900 to-indigo-950 text-white rounded-3xl p-8 md:p-12 shadow-2xl border border-slate-800 text-center">
+                    <span class="text-indigo-400 font-bold text-xs uppercase tracking-widest bg-indigo-900/60 px-3.5 py-1.5 rounded-full border border-indigo-700/50">MY LISTED CARS</span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold mt-3 mb-4 tracking-tight">📋 我的刊登汽車 · 車源管理系統</h2>
+                    <p class="text-slate-300 text-base leading-relaxed max-w-2xl mx-auto">在此檢視您目前在 U-Turn 所刊登的所有愛車，並可直接進行下架管理。</p>
+                </div>
+
+                <!-- 動態載入容器 -->
+                <div id="my-cars-container">
+                    <div class="text-center py-20 text-slate-400 bg-white rounded-3xl border border-slate-100 shadow-sm">
+                        <span class="font-medium text-slate-500">正在檢查會員登入狀態...</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 分頁 3：高價收車 (Dealer Acquisition Tab) -->
         <section id="tab-dealer-acquire" class="tab-content hidden">
             <div class="max-w-4xl mx-auto space-y-10">
                 <div class="bg-gradient-to-br from-indigo-950 via-slate-900 to-blue-950 text-white rounded-3xl p-8 md:p-12 shadow-2xl border border-slate-800 text-center">
@@ -276,7 +296,6 @@
                     <h2 class="text-3xl md:text-4xl font-extrabold mt-3 mb-4 tracking-tight">🏢 專業高價收車 · 專人到府估價</h2>
                     <p class="text-slate-300 text-base leading-relaxed max-w-2xl mx-auto">不想花時間自己慢慢跟買家殺價？U-Turn 專業團隊提供全台免費到府估價、高價現金收購、快速過戶、結清貸款一次搞定！</p>
                     
-                    <!-- 快速直接聯繫區塊 (置頂顯示電話與 LINE) -->
                     <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
                         <a href="tel:0986510996" class="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-6 py-3.5 rounded-2xl shadow-lg transition-all flex items-center gap-2">
                             <span>📞</span> 立即撥打電話：0986510996
@@ -287,7 +306,6 @@
                     </div>
                 </div>
 
-                <!-- 3 大保證卡片 -->
                 <div class="grid md:grid-cols-3 gap-6">
                     <div class="bg-white p-8 rounded-3xl shadow-lg shadow-slate-200/50 border border-slate-100 text-center">
                         <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-inner">⚡</div>
@@ -305,8 +323,7 @@
                         <p class="text-slate-600 text-xs md:text-sm leading-relaxed">車子還有車貸尚未繳清沒關係！我們協助代辦結清、塗銷與過戶手續。</p>
                     </div>
                 </div>
-
-                
+            </div>
         </section>
 
         <!-- 分頁 4：車貸試算 (Loan Calculator Tab) -->
@@ -319,7 +336,6 @@
                 </div>
 
                 <div class="grid md:grid-cols-12 gap-8 items-start">
-                    <!-- 左側：輸入表單 -->
                     <div class="md:col-span-7 bg-white rounded-3xl p-8 shadow-xl shadow-slate-200/50 border border-slate-100 space-y-6">
                         <h3 class="text-xl font-extrabold text-slate-900 pb-4 border-b border-slate-100">試算參數設定</h3>
 
@@ -358,7 +374,6 @@
                         </div>
                     </div>
 
-                    <!-- 右側：計算結果面板 -->
                     <div class="md:col-span-5 bg-gradient-to-br from-blue-900 to-indigo-950 text-white rounded-3xl p-8 shadow-2xl flex flex-col justify-between space-y-6">
                         <div>
                             <div class="text-xs text-blue-300 uppercase tracking-widest font-bold mb-2">ESTIMATED MONTHLY PAYMENT</div>
@@ -751,6 +766,11 @@
                 activeBtn.classList.add('text-blue-400', 'bg-blue-950/85', 'border', 'border-blue-700/50', 'shadow-sm');
             }
 
+            // 若切換到「我的刊登汽車」分頁，觸發渲染檢查
+            if (tabId === 'my-cars') {
+                renderMyCars();
+            }
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -806,31 +826,7 @@
 
         calculateLoan();
 
-        // 3. 高價收車預約提交邏輯
-        function submitDealerAcquire() {
-            const name = document.getElementById('acquire-name').value.trim();
-            const phone = document.getElementById('acquire-phone').value.trim();
-            const carModel = document.getElementById('acquire-car-model').value.trim();
-            const successMsg = document.getElementById('acquire-success-msg');
-
-            if (!name || !phone || !carModel) {
-                alert('請完整填寫必填欄位：「車主姓名」、「聯絡電話」與「車款廠牌與型號」！');
-                return;
-            }
-
-            successMsg.classList.remove('hidden');
-            setTimeout(() => {
-                successMsg.classList.add('hidden');
-                document.getElementById('acquire-name').value = '';
-                document.getElementById('acquire-phone').value = '0986510996';
-                document.getElementById('acquire-car-model').value = '';
-                document.getElementById('acquire-year').value = '';
-                document.getElementById('acquire-mileage').value = '';
-                document.getElementById('acquire-notes').value = '';
-            }, 5000);
-        }
-
-        // 4. Supabase 設定與車源串接
+        // 3. Supabase 設定與車源串接
         const SUPABASE_URL = 'https://hjbhwtrypiqiusadzatl.supabase.co';
         const SUPABASE_ANON_KEY = 'sb_publishable_wp5rNGkZc_T40Lk5bm0Y1Q_khbX4ycS';
 
@@ -850,6 +846,12 @@
 
                 allCars = await response.json();
                 renderCars(allCars);
+
+                // 如果目前在「我的刊登汽車」分頁，順便更新
+                const myCarsTab = document.getElementById('tab-my-cars');
+                if (myCarsTab && !myCarsTab.classList.contains('hidden')) {
+                    renderMyCars();
+                }
 
             } catch (err) {
                 console.error(err);
@@ -924,6 +926,115 @@
                     </div>
                 `;
             }).join('');
+        }
+
+        // 4. 「我的刊登汽車」渲染與下架管理邏輯
+        function renderMyCars() {
+            const container = document.getElementById('my-cars-container');
+            const savedMember = localStorage.getItem('uturn_member') || sessionStorage.getItem('uturn_member');
+
+            // 檢查未登入狀態
+            if (!savedMember) {
+                container.innerHTML = `
+                    <div class="bg-white rounded-3xl p-12 text-center shadow-xl shadow-slate-200/50 border border-slate-100 space-y-5">
+                        <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-3xl flex items-center justify-center text-3xl mx-auto shadow-inner">🔒</div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">尚未登入會員</h3>
+                        <p class="text-slate-500 text-sm max-w-md mx-auto leading-relaxed">您目前尚未登入會員。請先加入或登入會員，即可在此檢視並管理您所刊登的所有愛車！</p>
+                        <button onclick="openLoginModal()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-3.5 rounded-2xl shadow-lg shadow-blue-600/30 transition-all cursor-pointer">
+                            立即登入 / 加入會員
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            const currentMember = JSON.parse(savedMember);
+            // 篩選出屬於該會員刊登的車輛
+            const myCars = allCars.filter(car => Number(car.seller_id) === Number(currentMember.id));
+
+            if (myCars.length === 0) {
+                container.innerHTML = `
+                    <div class="bg-white rounded-3xl p-12 text-center shadow-xl shadow-slate-200/50 border border-slate-100 space-y-5">
+                        <div class="w-16 h-16 bg-slate-50 text-slate-400 rounded-3xl flex items-center justify-center text-3xl mx-auto shadow-inner">🚗</div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">目前沒有刊登中的汽車</h3>
+                        <p class="text-slate-500 text-sm max-w-md mx-auto leading-relaxed">您（${currentMember.name} / ID: ${currentMember.id}）目前尚未在 U-Turn 刊登任何愛車。</p>
+                        <button onclick="switchTab('sell-car')" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-3.5 rounded-2xl shadow-lg shadow-blue-600/30 transition-all cursor-pointer">
+                            🚀 馬上去刊登賣車
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            // 渲染會員的刊登車輛清單（附帶下架按鈕）
+            container.innerHTML = `
+                <div class="mb-6 flex items-center justify-between bg-white px-6 py-4 rounded-2xl shadow-sm border border-slate-100">
+                    <span class="text-sm font-bold text-slate-700">目前登入：<span class="text-blue-600">${currentMember.name}</span> (ID: ${currentMember.id})</span>
+                    <span class="text-xs bg-blue-50 text-blue-700 px-3 py-1 rounded-xl font-bold border border-blue-100">刊登中車輛：${myCars.length} 輛</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6">
+                    ${myCars.map(car => {
+                        let imageUrl = car.image_url;
+                        if (!imageUrl && car.image_urls && car.image_urls.length > 0) imageUrl = car.image_urls[0];
+                        if (!imageUrl) imageUrl = 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80';
+                        const formattedPrice = car.price ? `NT$ ${Number(car.price).toLocaleString()}` : '價格面議';
+
+                        return `
+                            <div class="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden flex flex-col justify-between">
+                                <div>
+                                    <div class="relative h-48 overflow-hidden bg-slate-100">
+                                        <img src="${imageUrl}" class="w-full h-full object-cover">
+                                        ${car.condition ? `<span class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">${car.condition}</span>` : ''}
+                                        <span class="absolute top-3 right-3 bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">🟢 刊登中</span>
+                                    </div>
+                                    <div class="p-6">
+                                        <div class="text-lg font-bold text-slate-900 mb-1 line-clamp-1">${car.title || '無標題車輛'}</div>
+                                        <div class="text-xl font-extrabold text-blue-600 mb-3">${formattedPrice}</div>
+                                        <div class="flex flex-wrap gap-2 text-xs text-slate-500 mb-3">
+                                            ${car.year ? `<span>📅 ${car.year}年</span>` : ''}
+                                            ${car.location ? `<span>📍 ${car.location}</span>` : ''}
+                                            ${car.phone ? `<span>📞 ${car.phone}</span>` : ''}
+                                        </div>
+                                        ${car.description ? `<p class="text-slate-600 text-xs line-clamp-2 leading-relaxed">${car.description}</p>` : ''}
+                                    </div>
+                                </div>
+                                <div class="p-6 pt-0 border-t border-slate-100 mt-2">
+                                    <button onclick="deleteMyCar(${car.id})" class="w-full bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 font-bold py-3 rounded-2xl transition-all shadow-sm cursor-pointer text-sm flex items-center justify-center gap-2">
+                                        <span>🗑️</span> 下架此車 (從資料庫刪除)
+                                    </button>
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            `;
+        }
+
+        // 下架（刪除）會員刊登汽車邏輯
+        async function deleteMyCar(carId) {
+            if (!confirm('⚠️ 確定要下架並刪除這輛車的刊登嗎？此動作無法復原。')) return;
+
+            const savedMember = localStorage.getItem('uturn_member') || sessionStorage.getItem('uturn_member');
+            if (!savedMember) return;
+            const currentMember = JSON.parse(savedMember);
+
+            try {
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/cars?id=eq.${carId}&seller_id=eq.${currentMember.id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                    }
+                });
+
+                if (!response.ok) throw new Error('刪除失敗');
+
+                alert('✅ 該車輛已成功下架！');
+                await fetchCars(); // 重新向 Supabase 抓取最新車源
+            } catch (err) {
+                console.error(err);
+                alert('下架失敗，請檢查網路連線或稍後再試。');
+            }
         }
 
         // 5. 篩選與排序邏輯
@@ -1003,10 +1114,12 @@
             }
         }
 
-        openLoginBtn.addEventListener('click', () => {
+        function openLoginModal() {
             loginModal.classList.remove('hidden');
             checkStoredMember();
-        });
+        }
+
+        openLoginBtn.addEventListener('click', openLoginModal);
 
         closeLoginBtn.addEventListener('click', () => {
             loginModal.classList.add('hidden');
@@ -1095,6 +1208,11 @@
                     }
                     showMemberInfo(member);
                     loginModal.classList.add('hidden');
+                    // 如果目前在「我的刊登汽車」分頁，重新整理畫面
+                    const myCarsTab = document.getElementById('tab-my-cars');
+                    if (myCarsTab && !myCarsTab.classList.contains('hidden')) {
+                        renderMyCars();
+                    }
                 } else {
                     loginError.textContent = '查無此會員資料，姓名與會員 ID 比對不符！';
                     loginError.classList.remove('hidden');
@@ -1178,6 +1296,11 @@
                 showMemberInfo(member);
                 loginModal.classList.add('hidden');
 
+                const myCarsTab = document.getElementById('tab-my-cars');
+                if (myCarsTab && !myCarsTab.classList.contains('hidden')) {
+                    renderMyCars();
+                }
+
             } catch (err) {
                 console.error(err);
                 regError.textContent = '註冊失敗，請確認網路連線或該 ID 是否已被使用。';
@@ -1202,8 +1325,13 @@
             loginFormContainer.classList.remove('hidden');
             registerFormContainer.classList.add('hidden');
             memberInfoContainer.classList.add('hidden');
-            navMemberText.textContent = '會員登入';
+            navMemberText.textContent = '會員';
             updateSellPageState(null);
+
+            const myCarsTab = document.getElementById('tab-my-cars');
+            if (myCarsTab && !myCarsTab.classList.contains('hidden')) {
+                renderMyCars();
+            }
         });
 
         // 7. 本地多張圖片壓縮與預覽管理系統
@@ -1373,7 +1501,7 @@
                 imageCounter.textContent = '已選擇 0 張相片';
 
                 await fetchCars();
-                switchTab('cars');
+                switchTab('my-cars'); // 自動切換至「我的刊登汽車」分頁讓用戶確認
 
             } catch (err) {
                 console.error(err);
