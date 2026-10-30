@@ -87,7 +87,7 @@
             <div class="text-center mb-10">
                 <span class="text-blue-600 font-bold text-xs uppercase tracking-widest bg-blue-100/80 px-3.5 py-1.5 rounded-full border border-blue-200">CAR LISTINGS</span>
                 <h2 class="text-3xl md:text-4xl font-extrabold mt-3 mb-3 text-slate-900 tracking-tight">🔥 車源大廳 · 精選好車</h2>
-                <p class="text-slate-600 max-w-xl mx-auto text-base">即時掌握全台最新透明好車</p>
+                <p class="text-slate-600 max-w-xl mx-auto text-base">即時掌握全台最新透明好車（點擊車輛卡片可查看詳細資料與照片）[cite: 1]</p>
             </div>
 
             <!-- 進階篩選與排序控制面板 -->
@@ -626,6 +626,17 @@
 
     </main>
 
+    <!-- 車輛詳細資料彈跳視窗 (Car Detail Modal) -->
+    <div id="car-detail-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-md hidden p-4">
+        <div class="bg-white w-full max-w-2xl rounded-3xl p-6 md:p-8 shadow-2xl border border-slate-100 relative max-h-[90vh] overflow-y-auto animate-in fade-in zoom-in duration-200">
+            <button onclick="closeCarDetailModal()" class="absolute top-6 right-6 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center font-bold transition-colors cursor-pointer z-10">✕</button>
+            
+            <div id="car-detail-content">
+                <!-- 動態載入詳細資料與照片 -->
+            </div>
+        </div>
+    </div>
+
     <!-- 會員登入 / 加入會員彈跳視窗 (Member Auth Modal) -->
     <div id="login-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-md hidden p-4">
         <div class="bg-white w-full max-w-md rounded-3xl p-8 md:p-10 shadow-2xl border border-slate-100 relative animate-in fade-in zoom-in duration-200">
@@ -924,13 +935,14 @@
 
                 return `
                     <div class="bg-white rounded-3xl shadow-lg shadow-slate-200/50 hover:shadow-2xl transition-all duration-300 border border-slate-100 overflow-hidden flex flex-col justify-between group">
-                        <div>
+                        <div class="cursor-pointer" onclick="showCarDetail(${car.id})">
                             <div class="relative h-52 overflow-hidden bg-slate-100">
                                 <img src="${imageUrl}" alt="${car.title || 'U-Turn 嚴選好車'}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                                 ${car.condition ? `<span class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">${car.condition}</span>` : ''}
+                                <span class="absolute bottom-3 right-3 bg-slate-900/80 backdrop-blur-md text-white text-[11px] font-bold px-2.5 py-1 rounded-xl shadow">🔍 點擊看詳細資料</span>
                             </div>
                             <div class="p-6">
-                                <div class="text-xl font-bold text-slate-900 mb-2 line-clamp-1">${car.title || '無標題車輛'}</div>
+                                <div class="text-xl font-bold text-slate-900 mb-2 line-clamp-1 hover:text-blue-600 transition-colors">${car.title || '無標題車輛'}</div>
                                 <div class="text-2xl font-extrabold text-blue-600 mb-4 tracking-tight">${formattedPrice}</div>
                                 
                                 <div class="flex flex-wrap gap-2 mb-4">
@@ -957,7 +969,106 @@
             }).join('');
         }
 
-        // 4. 「我的刊登汽車」渲染與下架管理邏輯
+        // 4. 顯示車輛詳細資料彈跳視窗與多張照片檢視
+        function showCarDetail(carId) {
+            const car = allCars.find(c => Number(c.id) === Number(carId));
+            if (!car) return;
+
+            let images = car.image_urls || [];
+            if (images.length === 0 && car.image_url) {
+                images = [car.image_url];
+            }
+            if (images.length === 0) {
+                images = ['https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80'];
+            }
+
+            const formattedPrice = car.price ? `NT$ ${Number(car.price).toLocaleString()}` : '價格面議';
+            const safePhone = (car.phone || '未提供').replace(/'/g, "\\'");
+            const safeSellerName = (car.seller_name || '熱心車主').replace(/'/g, "\\'");
+            const safeTitle = (car.title || 'U-Turn 嚴選好車').replace(/'/g, "\\'");
+            const safeSellerId = car.seller_id ? Number(car.seller_id) : 1;
+
+            const detailContainer = document.getElementById('car-detail-content');
+            detailContainer.innerHTML = `
+                <div class="space-y-6">
+                    <!-- 照片相簿展示區 -->
+                    <div>
+                        <div class="relative h-72 sm:h-96 rounded-2xl overflow-hidden bg-slate-100 mb-3 shadow-inner">
+                            <img id="detail-main-img" src="${images[0]}" class="w-full h-full object-cover">
+                            ${car.condition ? `<span class="absolute top-4 left-4 bg-blue-600 text-white text-xs font-bold px-3.5 py-1.5 rounded-full shadow-md">${car.condition}</span>` : ''}
+                        </div>
+                        ${images.length > 1 ? `
+                            <div class="flex gap-2 overflow-x-auto pb-2">
+                                ${images.map((img, idx) => `
+                                    <div onclick="document.getElementById('detail-main-img').src='${img}'" class="w-20 h-20 rounded-xl overflow-hidden bg-slate-100 shrink-0 cursor-pointer border-2 border-transparent hover:border-blue-600 transition-all shadow-xs">
+                                        <img src="${img}" class="w-full h-full object-cover">
+                                    </div>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+                    </div>
+
+                    <!-- 車款標題與售價 -->
+                    <div>
+                        <div class="text-2xl md:text-3xl font-extrabold text-slate-900 mb-2">${car.title || '無標題車輛'}</div>
+                        <div class="text-3xl font-black text-blue-600 tracking-tight">${formattedPrice}</div>
+                    </div>
+
+                    <!-- 詳細規格格線 -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 bg-slate-50 p-5 rounded-2xl border border-slate-100 text-sm shadow-inner">
+                        <div>
+                            <span class="block text-xs text-slate-400 font-bold uppercase mb-0.5">出廠年份</span>
+                            <span class="font-bold text-slate-800">📅 ${car.year ? car.year + ' 年' : '未填寫'}</span>
+                        </div>
+                        <div>
+                            <span class="block text-xs text-slate-400 font-bold uppercase mb-0.5">行駛里程</span>
+                            <span class="font-bold text-slate-800">🛣️ ${car.mileage ? Number(car.mileage).toLocaleString() + ' 公里' : '未填寫'}</span>
+                        </div>
+                        <div>
+                            <span class="block text-xs text-slate-400 font-bold uppercase mb-0.5">車況類別</span>
+                            <span class="font-bold text-slate-800">🛡️ ${car.condition || '未填寫'}</span>
+                        </div>
+                        <div>
+                            <span class="block text-xs text-slate-400 font-bold uppercase mb-0.5">所在縣市</span>
+                            <span class="font-bold text-slate-800">📍 ${car.location || '未填寫'}</span>
+                        </div>
+                        <div>
+                            <span class="block text-xs text-slate-400 font-bold uppercase mb-0.5">刊登車主</span>
+                            <span class="font-bold text-slate-800">👤 ${safeSellerName}</span>
+                        </div>
+                        <div>
+                            <span class="block text-xs text-slate-400 font-bold uppercase mb-0.5">聯絡電話</span>
+                            <span class="font-bold text-blue-600">📞 ${car.phone || '未公開'}</span>
+                        </div>
+                    </div>
+
+                    <!-- 車輛詳細描述 -->
+                    ${car.description ? `
+                        <div>
+                            <h4 class="text-xs font-bold text-slate-400 uppercase mb-2">車輛詳細描述與特色</h4>
+                            <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100 text-slate-700 text-sm leading-relaxed whitespace-pre-line shadow-inner">${escapeHtml(car.description)}</div>
+                        </div>
+                    ` : ''}
+
+                    <!-- 底部互動按鈕 -->
+                    <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+                        <button onclick="closeCarDetailModal(); showContactModal('${safePhone}', '${safeSellerName}', '${safeTitle}')" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-3.5 rounded-2xl transition-all shadow-sm cursor-pointer flex items-center justify-center gap-2">
+                            <span>📞</span> 聯絡電話
+                        </button>
+                        <button onclick="closeCarDetailModal(); openChatModal(${safeSellerId}, '${safeSellerName}', '${safeTitle}')" class="flex-1 bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 rounded-2xl transition-all shadow-lg shadow-blue-600/30 cursor-pointer flex items-center justify-center gap-2">
+                            <span>💬</span> 私訊賣家
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.getElementById('car-detail-modal').classList.remove('hidden');
+        }
+
+        function closeCarDetailModal() {
+            document.getElementById('car-detail-modal').classList.add('hidden');
+        }
+
+        // 5. 「我的刊登汽車」渲染與下架管理邏輯
         function renderMyCars() {
             const container = document.getElementById('my-cars-container');
             const savedMember = localStorage.getItem('uturn_member') || sessionStorage.getItem('uturn_member');
@@ -1008,7 +1119,7 @@
 
                         return `
                             <div class="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden flex flex-col justify-between">
-                                <div>
+                                <div class="cursor-pointer" onclick="showCarDetail(${car.id})">
                                     <div class="relative h-48 overflow-hidden bg-slate-100">
                                         <img src="${imageUrl}" class="w-full h-full object-cover">
                                         ${car.condition ? `<span class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">${car.condition}</span>` : ''}
@@ -1063,7 +1174,7 @@
             }
         }
 
-        // 5. 篩選與排序邏輯 (整合品牌篩選)
+        // 6. 篩選與排序邏輯 (整合品牌篩選)
         function filterAndSortCars() {
             const keyword = document.getElementById('search-input').value.toLowerCase().trim();
             const selectedLocation = document.getElementById('location-filter').value;
@@ -1110,7 +1221,7 @@
         document.getElementById('brand-filter').addEventListener('change', filterAndSortCars);
         document.getElementById('sort-select').addEventListener('change', filterAndSortCars);
 
-        // 6. 會員登入與加入會員系統互動邏輯
+        // 7. 會員登入與加入會員系統互動邏輯
         const loginModal = document.getElementById('login-modal');
         const openLoginBtn = document.getElementById('open-login-modal');
         const closeLoginBtn = document.getElementById('close-login-modal');
@@ -1366,7 +1477,7 @@
             }
         });
 
-        // 7. 本地多張圖片壓縮與預覽管理系統
+        // 8. 本地多張圖片壓縮與預覽管理系統
         let uploadedBase64Images = [];
         const carImageFilesInput = document.getElementById('car-image-files');
         const imagePreviewContainer = document.getElementById('image-preview-container');
@@ -1453,7 +1564,7 @@
             renderImagePreviews();
         }
 
-        // 8. 刊登汽車系統邏輯
+        // 9. 刊登汽車系統邏輯
         const submitPublishBtn = document.getElementById('submit-publish-btn');
         const publishError = document.getElementById('publish-error');
 
@@ -1545,7 +1656,7 @@
             }
         });
 
-        // 9. 聯絡車主彈跳視窗
+        // 10. 聯絡車主彈跳視窗
         const contactModal = document.getElementById('contact-modal');
         const closeContactModalBtn = document.getElementById('close-contact-modal');
 
@@ -1582,7 +1693,7 @@
         closeContactModalBtn.addEventListener('click', closeContactModal);
         contactModal.addEventListener('click', (e) => { if (e.target === contactModal) closeContactModal(); });
 
-        // 10. 私訊聊天系統
+        // 11. 私訊聊天系統
         let currentChatTarget = null;
         const chatModal = document.getElementById('chat-modal');
         const closeChatModalBtn = document.getElementById('close-chat-modal');
