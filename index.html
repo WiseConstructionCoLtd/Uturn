@@ -8,10 +8,8 @@
     <title>U-Turn 轉角好車 | 車源大廳、高價收車、車貸試算與會員中心平台</title>
     
     <!-- 網站 Icon / Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/WiseConstructionCoLtd/Uturn/main/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/WiseConstructionCoLtd/Uturn/main/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/WiseConstructionCoLtd/Uturn/main/favicon-16x16.png">
-    <link rel="manifest" href="https://raw.githubusercontent.com/WiseConstructionCoLtd/Uturn/main/site.webmanifest">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/WiseConstructionCoLtd/Uturn/main/app_icon.png">
+    <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/WiseConstructionCoLtd/Uturn/main/app_icon.png">
 
     <meta name="description" content="U-Turn 轉角好車官方網站。提供分頁車源大廳、刊登賣車、高價收車、車貸試算、過戶指南與會員姓名+ID紅利點數登入系統。">
     <meta name="keywords" content="U-Turn, 轉角好車, 車源大廳, 刊登賣車, 高價收車, 車貸試算, 過戶指南, 會員, 買車, 賣車 App">
@@ -89,16 +87,44 @@
             <div class="text-center mb-10">
                 <span class="text-blue-600 font-bold text-xs uppercase tracking-widest bg-blue-100/80 px-3.5 py-1.5 rounded-full border border-blue-200">CAR LISTINGS</span>
                 <h2 class="text-3xl md:text-4xl font-extrabold mt-3 mb-3 text-slate-900 tracking-tight">🔥 車源大廳 · 精選好車</h2>
-                <p class="text-slate-600 max-w-xl mx-auto text-base">同步自 Supabase 資料庫[cite: 1]，即時掌握全台最新透明好車</p>
+                <p class="text-slate-600 max-w-xl mx-auto text-base">即時掌握全台最新透明好車</p>
             </div>
 
-            <!-- 進階篩選與排序控制面板 -->
-            <div class="bg-white/90 backdrop-blur-md rounded-3xl p-6 shadow-xl shadow-slate-200/50 border border-slate-100 mb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-center">
+            <!-- 進階篩選與排序控制面板 (已加入台灣汽車品牌篩選) -->
+            <div class="bg-white/90 backdrop-blur-md rounded-3xl p-6 shadow-xl shadow-slate-200/50 border border-slate-100 mb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 items-center">
                 <div class="relative">
                     <span class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">🔍</span>
                     <input type="text" id="search-input" placeholder="搜尋車款名稱、特色..." class="w-full pl-11 pr-4 py-3 bg-slate-50/80 border border-slate-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all shadow-inner">
                 </div>
 
+<!-- 新增：台灣汽車品牌下拉選單 -->
+                <div class="relative">
+                    <select id="brand-filter" class="w-full px-4 py-3 bg-slate-50/80 border border-slate-200 rounded-2xl text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all cursor-pointer shadow-inner">
+                        <option value="">🏷️ 台灣汽車品牌 (不限)</option>
+                        <option value="Toyota">Toyota (豐田)</option>
+                        <option value="Benz">Mercedes-Benz (賓士)</option>
+                        <option value="BMW">BMW (寶馬)</option>
+                        <option value="Honda">Honda (本田)</option>
+                        <option value="Lexus">Lexus (凌志)</option>
+                        <option value="Porsche">Porsche (保時捷)</option>
+                        <option value="Mazda">Mazda (馬自達)</option>
+                        <option value="Tesla">Tesla (特斯拉)</option>
+                        <option value="Nissan">Nissan (日產)</option>
+                        <option value="Ford">Ford (福特)</option>
+                        <option value="Volkswagen">Volkswagen (福斯)</option>
+                        <option value="Hyundai">Hyundai (現代)</option>
+                        <option value="Kia">Kia (起亞)</option>
+                        <option value="Volvo">Volvo (富豪)</option>
+                        <option value="Audi">Audi (奧迪)</option>
+                        <option value="Subaru">Subaru (速霸陸)</option>
+                        <option value="Suzuki">Suzuki (鈴木)</option>
+                        <option value="Mitsubishi">Mitsubishi (三菱)</option>
+                        <option value="Luxgen">Luxgen (納智捷)</option>
+                        <option value="MINI">MINI (迷你)</option>
+                        <option value="Skoda">Skoda (斯柯達)</option>
+                        <option value="Land Rover">Land Rover (荒原路華)</option>
+                    </select>
+                </div>
                 <div class="relative">
                     <select id="location-filter" class="w-full px-4 py-3 bg-slate-50/80 border border-slate-200 rounded-2xl text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all cursor-pointer shadow-inner">
                         <option value="">📍 全台灣所有縣市 (不限)</option>
@@ -135,6 +161,8 @@
                         <option value="二手車">🚗 二手車 / 中古車</option>
                     </select>
                 </div>
+
+                
 
                 <div class="relative">
                     <select id="sort-select" class="w-full px-4 py-3 bg-slate-50/80 border border-slate-200 rounded-2xl text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all cursor-pointer shadow-inner">
@@ -873,7 +901,7 @@
                     <div class="col-span-full text-center py-20 bg-white rounded-3xl border border-slate-100 text-slate-500 shadow-sm">
                         <div class="text-4xl mb-3">🚗</div>
                         <p class="text-lg font-bold text-slate-800 mb-1">沒有符合篩選條件的車源</p>
-                        <p class="text-sm text-slate-500 mb-6">嘗試切換其他縣市、車況或關鍵字！</p>
+                        <p class="text-sm text-slate-500 mb-6">嘗試切換其他縣市、車況、品牌或關鍵字！</p>
                     </div>
                 `;
                 return;
@@ -951,7 +979,6 @@
             }
 
             const currentMember = JSON.parse(savedMember);
-            // 篩選出屬於該會員刊登的車輛
             const myCars = allCars.filter(car => Number(car.seller_id) === Number(currentMember.id));
 
             if (myCars.length === 0) {
@@ -968,7 +995,6 @@
                 return;
             }
 
-            // 渲染會員的刊登車輛清單（附帶下架按鈕）
             container.innerHTML = `
                 <div class="mb-6 flex items-center justify-between bg-white px-6 py-4 rounded-2xl shadow-sm border border-slate-100">
                     <span class="text-sm font-bold text-slate-700">目前登入：<span class="text-blue-600">${currentMember.name}</span> (ID: ${currentMember.id})</span>
@@ -1012,7 +1038,6 @@
             `;
         }
 
-        // 下架（刪除）會員刊登汽車邏輯
         async function deleteMyCar(carId) {
             if (!confirm('⚠️ 確定要下架並刪除這輛車的刊登嗎？此動作無法復原。')) return;
 
@@ -1032,18 +1057,19 @@
                 if (!response.ok) throw new Error('刪除失敗');
 
                 alert('✅ 該車輛已成功下架！');
-                await fetchCars(); // 重新向 Supabase 抓取最新車源
+                await fetchCars();
             } catch (err) {
                 console.error(err);
                 alert('下架失敗，請檢查網路連線或稍後再試。');
             }
         }
 
-        // 5. 篩選與排序邏輯
+        // 5. 篩選與排序邏輯 (整合品牌篩選)
         function filterAndSortCars() {
             const keyword = document.getElementById('search-input').value.toLowerCase().trim();
             const selectedLocation = document.getElementById('location-filter').value;
             const selectedCondition = document.getElementById('condition-filter').value;
+            const selectedBrand = document.getElementById('brand-filter').value;
             const sortType = document.getElementById('sort-select').value;
 
             let filtered = allCars.filter(car => {
@@ -1054,8 +1080,13 @@
                 const matchesKeyword = !keyword || titleMatch || descMatch || locationMatch;
                 const matchesLocation = !selectedLocation || (car.location && car.location.includes(selectedLocation));
                 const matchesCondition = !selectedCondition || (car.condition && car.condition.includes(selectedCondition));
+                
+                // 品牌篩選比對（檢查標題或品牌欄位是否包含所選品牌）
+                const matchesBrand = !selectedBrand || 
+                    (car.title && car.title.toLowerCase().includes(selectedBrand.toLowerCase())) || 
+                    (car.brand && car.brand.toLowerCase() === selectedBrand.toLowerCase());
 
-                return matchesKeyword && matchesLocation && matchesCondition;
+                return matchesKeyword && matchesLocation && matchesCondition && matchesBrand;
             });
 
             filtered.sort((a, b) => {
@@ -1077,6 +1108,7 @@
         document.getElementById('search-input').addEventListener('input', filterAndSortCars);
         document.getElementById('location-filter').addEventListener('change', filterAndSortCars);
         document.getElementById('condition-filter').addEventListener('change', filterAndSortCars);
+        document.getElementById('brand-filter').addEventListener('change', filterAndSortCars);
         document.getElementById('sort-select').addEventListener('change', filterAndSortCars);
 
         // 6. 會員登入與加入會員系統互動邏輯
@@ -1210,7 +1242,6 @@
                     }
                     showMemberInfo(member);
                     loginModal.classList.add('hidden');
-                    // 如果目前在「我的刊登汽車」分頁，重新整理畫面
                     const myCarsTab = document.getElementById('tab-my-cars');
                     if (myCarsTab && !myCarsTab.classList.contains('hidden')) {
                         renderMyCars();
@@ -1503,7 +1534,7 @@
                 imageCounter.textContent = '已選擇 0 張相片';
 
                 await fetchCars();
-                switchTab('my-cars'); // 自動切換至「我的刊登汽車」分頁讓用戶確認
+                switchTab('my-cars');
 
             } catch (err) {
                 console.error(err);
@@ -1563,7 +1594,7 @@
         async function openChatModal(sellerId, sellerName, carTitle) {
             const savedMember = localStorage.getItem('uturn_member') || sessionStorage.getItem('uturn_member');
             if (!savedMember) {
-                alert('⚠️ 必須先登入會員才能使用私訊聊天系統！');
+                alert('⚠️ 必須先登入會員才能使用私訊聊天系統！防止機器打擾別人');
                 loginModal.classList.remove('hidden');
                 return;
             }
