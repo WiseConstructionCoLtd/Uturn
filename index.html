@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- 搜尋引擎標題 -->
-    <title>U-Turn 轉角好車 | 車源大廳、高價收車、車貸試算與會員中心平台</title>
+    <!-- 搜尋引擎標題[cite: 1] -->
+    <title>U-Turn 轉角好車 | 車源大廳、高價收車、車貸試算與會員聊天室平台</title>
 
-  <!-- 網站圖示 (Favicon & App Icons) 設定 -->
+  <!-- 網站圖示 (Favicon & App Icons) 設定[cite: 1] -->
+<!-- 網站圖示 (Favicon & App Icons) 完整設定[cite: 1] -->
+    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/WiseConstructionCoLtd/Uturn/main/favicon.ico">
     <link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/WiseConstructionCoLtd/Uturn/main/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/WiseConstructionCoLtd/Uturn/main/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/WiseConstructionCoLtd/Uturn/main/apple-touch-icon.png">
@@ -15,15 +17,15 @@
     <link rel="icon" type="image/png" sizes="512x512" href="https://raw.githubusercontent.com/WiseConstructionCoLtd/Uturn/main/android-chrome-512x512.png">
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/WiseConstructionCoLtd/Uturn/main/app_icon.png">
     
-    <meta name="description" content="U-Turn 轉角好車官方網站。提供分頁車源大廳、刊登賣車、高價收車、車貸試算、過戶指南與會員姓名+ID紅利點數登入系統。">
-    <meta name="keywords" content="U-Turn, 轉角好車, 車源大廳, 刊登賣車, 高價收車, 車貸試算, 過戶指南, 會員, 買車, 賣車 App">
+    <meta name="description" content="U-Turn 轉角好車官方網站。提供分頁車源大廳、刊登賣車、會員即時聊天室、高價收車、車貸試算與會員點數系統。">
+    <meta name="keywords" content="U-Turn, 轉角好車, 車源大廳, 聊天室, 刊登賣車, 高價收車, 車貸試算, 會員中心平台">
 
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS[cite: 1] -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gradient-to-br from-slate-50 via-blue-50/20 to-slate-100 text-slate-900 font-sans antialiased selection:bg-blue-600 selection:text-white min-h-screen">
 
-    <!-- Navbar 導覽列 -->
+    <!-- Navbar 導覽列[cite: 1] -->
     <nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-800 text-white shadow-md">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <a href="#" onclick="switchTab('cars')" class="font-extrabold text-xl tracking-tight flex items-center gap-2.5 cursor-pointer group">
@@ -33,9 +35,10 @@
                 <span>U-Turn <span class="text-blue-400 font-normal text-base">轉角好車</span></span>
             </a>
             
-            <!-- 桌面版分頁導覽按鈕 -->
+            <!-- 桌面版分頁導覽按鈕[cite: 1] -->
             <div class="hidden xl:flex items-center gap-1 text-sm font-medium bg-slate-800/80 p-1.5 rounded-2xl border border-slate-700/60 shadow-inner">
                 <button onclick="switchTab('cars')" id="nav-btn-cars" class="nav-tab-btn px-3.5 py-2 rounded-xl transition-all text-blue-400 bg-blue-950/80 border border-blue-700/50 shadow-sm cursor-pointer">車源大廳</button>
+                <button onclick="switchTab('chat-room')" id="nav-btn-chat-room" class="nav-tab-btn px-3.5 py-2 rounded-xl transition-all text-slate-300 hover:text-white hover:bg-slate-800 cursor-pointer">💬 聊天室</button>
                 <button onclick="switchTab('sell-car')" id="nav-btn-sell-car" class="nav-tab-btn px-3.5 py-2 rounded-xl transition-all text-slate-300 hover:text-white hover:bg-slate-800 cursor-pointer">刊登賣車</button>
                 <button onclick="switchTab('my-cars')" id="nav-btn-my-cars" class="nav-tab-btn px-3.5 py-2 rounded-xl transition-all text-slate-300 hover:text-white hover:bg-slate-800 cursor-pointer">我的刊登汽車</button>
                 <button onclick="switchTab('dealer-acquire')" id="nav-btn-dealer-acquire" class="nav-tab-btn px-3.5 py-2 rounded-xl transition-all text-slate-300 hover:text-white hover:bg-slate-800 cursor-pointer">高價收車</button>
@@ -46,7 +49,7 @@
                 <button onclick="switchTab('faq')" id="nav-btn-faq" class="nav-tab-btn px-3.5 py-2 rounded-xl transition-all text-slate-300 hover:text-white hover:bg-slate-800 cursor-pointer">常見問題</button>
             </div>
 
-            <!-- 右側功能按鈕 (會員登入 & 下載 App) -->
+            <!-- 右側功能按鈕[cite: 1] -->
             <div class="flex items-center gap-3">
                 <button id="open-login-modal" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 text-sm font-bold py-2.5 px-4 rounded-2xl transition-all flex items-center gap-2 shadow-sm hover:shadow cursor-pointer">
                     <span class="w-6 h-6 rounded-full bg-blue-600/20 text-blue-400 flex items-center justify-center text-xs">👤</span>
@@ -64,9 +67,10 @@
             </div>
         </div>
 
-        <!-- 手機版展開選單 -->
+        <!-- 手機版展開選單[cite: 1] -->
         <div id="mobile-menu" class="hidden xl:hidden bg-slate-900 border-b border-slate-800 px-6 py-4 space-y-2">
             <button onclick="switchTab('cars'); toggleMobileMenu();" class="block w-full text-left text-slate-300 hover:text-blue-400 py-2 font-medium">車源大廳</button>
+            <button onclick="switchTab('chat-room'); toggleMobileMenu();" class="block w-full text-left text-slate-300 hover:text-blue-400 py-2 font-medium">💬 聊天室 (需登入會員)</button>
             <button onclick="switchTab('sell-car'); toggleMobileMenu();" class="block w-full text-left text-slate-300 hover:text-blue-400 py-2 font-medium">刊登賣車</button>
             <button onclick="switchTab('my-cars'); toggleMobileMenu();" class="block w-full text-left text-slate-300 hover:text-blue-400 py-2 font-medium">我的刊登汽車</button>
             <button onclick="switchTab('dealer-acquire'); toggleMobileMenu();" class="block w-full text-left text-slate-300 hover:text-blue-400 py-2 font-medium">高價收車</button>
@@ -83,10 +87,10 @@
         </div>
     </nav>
 
-    <!-- Main Content Area (分頁容器) -->
+    <!-- Main Content Area (分頁容器)[cite: 1] -->
     <main class="max-w-6xl mx-auto py-12 px-6 min-h-[75vh]">
         
-        <!-- 分頁 1：車源大廳 (Cars Tab) -->
+        <!-- 分頁 1：車源大廳 (Cars Tab)[cite: 1] -->
         <section id="tab-cars" class="tab-content">
             <div class="text-center mb-10">
                 <span class="text-blue-600 font-bold text-xs uppercase tracking-widest bg-blue-100/80 px-3.5 py-1.5 rounded-full border border-blue-200">CAR LISTINGS</span>
@@ -94,14 +98,14 @@
                 <p class="text-slate-600 max-w-xl mx-auto text-base">即時掌握全台最新透明好車（點擊車輛卡片可查看詳細資料與照片）[cite: 1]</p>
             </div>
 
-            <!-- 進階篩選與排序控制面板 -->
+            <!-- 進階篩選與排序控制面板[cite: 1] -->
             <div class="bg-white/90 backdrop-blur-md rounded-3xl p-6 shadow-xl shadow-slate-200/50 border border-slate-100 mb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 items-center">
                 <div class="relative">
                     <span class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">🔍</span>
                     <input type="text" id="search-input" placeholder="搜尋車款名稱、特色..." class="w-full pl-11 pr-4 py-3 bg-slate-50/80 border border-slate-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all shadow-inner">
                 </div>
 
-                <!-- 台灣汽車品牌下拉選單 -->
+                <!-- 台灣汽車品牌下拉選單[cite: 1] -->
                 <div class="relative">
                     <select id="brand-filter" class="w-full px-4 py-3 bg-slate-50/80 border border-slate-200 rounded-2xl text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all cursor-pointer shadow-inner">
                         <option value="">🏷️ 台灣汽車品牌 (不限)</option>
@@ -177,7 +181,7 @@
                 </div>
             </div>
 
-            <!-- 車輛清單容器 -->
+            <!-- 車輛清單容器[cite: 1] -->
             <div id="cars-grid" class="grid md:grid-cols-3 gap-8">
                 <div class="col-span-full text-center py-20 text-slate-400 bg-white/50 rounded-3xl border border-slate-100 shadow-sm">
                     <svg class="animate-spin h-10 w-10 mx-auto mb-4 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -189,7 +193,61 @@
             </div>
         </section>
 
-        <!-- 分頁 2：個人賣車 & 線上刊登系統 (Sell Car Tab) -->
+        <!-- 新增分頁 2：聊天室專區 (Chat Room Tab - 必須登入會員) -->
+        <section id="tab-chat-room" class="tab-content hidden">
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div class="bg-gradient-to-br from-slate-900 to-blue-950 text-white rounded-3xl p-8 shadow-2xl border border-slate-800 text-center">
+                    <span class="text-blue-400 font-bold text-xs uppercase tracking-widest bg-blue-900/60 px-3.5 py-1.5 rounded-full border border-blue-700/50">MEMBER CHAT SYSTEM</span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold mt-3 mb-2 tracking-tight">💬 會員即時聊天室</h2>
+                    <p class="text-slate-300 text-sm max-w-xl mx-auto">安全、即時地與賣家或買家溝通車況與預約看車。必須登入會員才能使用聊天系統[cite: 1]！</p>
+                </div>
+
+                <!-- 未登入提示區 -->
+                <div id="chat-tab-login-prompt" class="bg-white rounded-3xl p-12 text-center shadow-xl border border-slate-100 space-y-4">
+                    <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-3xl flex items-center justify-center text-3xl mx-auto shadow-inner">🔒</div>
+                    <h3 class="text-2xl font-extrabold text-slate-900">必須登入會員才能使用聊天室</h3>
+                    <p class="text-slate-500 text-sm max-w-md mx-auto">為了維護交易安全並防止惡意訊息，請先登入或註冊會員帳號，即可檢視您的對話紀錄[cite: 1]。</p>
+                    <button onclick="openLoginModal()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-3.5 rounded-2xl shadow-lg shadow-blue-600/30 transition-all cursor-pointer">
+                        立即登入會員
+                    </button>
+                </div>
+
+                <!-- 已登入聊天室主介面 -->
+                <div id="chat-tab-interface" class="hidden bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden grid md:grid-cols-12 min-h-[550px]">
+                    <!-- 左側聯絡人 / 聊天對話清單 -->
+                    <div class="md:col-span-5 border-r border-slate-100 p-4 flex flex-col bg-slate-50/50">
+                        <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
+                            <span class="font-bold text-sm text-slate-800">對話列表 (Inbox)</span>
+                            <span id="chat-user-badge" class="text-xs bg-blue-50 text-blue-600 font-bold px-2.5 py-1 rounded-xl">--</span>
+                        </div>
+                        <div id="chat-conversations-list" class="space-y-2 overflow-y-auto flex-1 pr-1">
+                            <div class="text-center text-slate-400 py-10 text-xs">載入對話列表中...</div>
+                        </div>
+                    </div>
+
+                    <!-- 右側即時對話訊息視窗 -->
+                    <div class="md:col-span-7 flex flex-col p-4 justify-between bg-white">
+                        <div id="chat-active-header" class="pb-3 border-b border-slate-100 mb-4">
+                            <h4 id="active-chat-title" class="font-extrabold text-slate-900 text-base">請從左側選擇對話</h4>
+                            <p id="active-chat-subtitle" class="text-xs text-slate-500">或從車源大廳點擊「私訊賣家」開始聊天</p>
+                        </div>
+
+                        <div id="chat-tab-messages-box" class="flex-1 overflow-y-auto space-y-3 pr-2 mb-4 bg-slate-50/60 p-4 rounded-2xl border border-slate-100 shadow-inner max-h-[380px]">
+                            <div class="text-center text-slate-400 py-16 text-xs">尚未選擇聊天對象</div>
+                        </div>
+
+                        <div class="flex gap-2 pt-2 border-t border-slate-100">
+                            <input type="text" id="chat-tab-input" placeholder="輸入訊息內容..." class="flex-1 px-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all shadow-inner" disabled>
+                            <button id="chat-tab-send-btn" onclick="sendTabChatMessage()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-5 py-3 rounded-2xl transition-all shadow-md shadow-blue-600/30 cursor-pointer disabled:opacity-50" disabled>
+                                傳送
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 分頁 3：個人賣車 & 線上刊登系統 (Sell Car Tab)[cite: 1] -->
         <section id="tab-sell-car" class="tab-content hidden">
             <div class="max-w-4xl mx-auto space-y-10">
                 <div class="bg-gradient-to-br from-slate-900 to-blue-950 text-white rounded-3xl p-8 md:p-12 shadow-2xl border border-slate-800 text-center">
@@ -303,16 +361,16 @@
             </div>
         </section>
 
-        <!-- 分頁 3：我的刊登汽車 (My Cars Tab) -->
+        <!-- 分頁 4：我的刊登汽車 (My Cars Tab)[cite: 1] -->
         <section id="tab-my-cars" class="tab-content hidden">
             <div class="max-w-4xl mx-auto space-y-10">
                 <div class="bg-gradient-to-br from-slate-900 to-indigo-950 text-white rounded-3xl p-8 md:p-12 shadow-2xl border border-slate-800 text-center">
                     <span class="text-indigo-400 font-bold text-xs uppercase tracking-widest bg-indigo-900/60 px-3.5 py-1.5 rounded-full border border-indigo-700/50">MY LISTED CARS</span>
                     <h2 class="text-3xl md:text-4xl font-extrabold mt-3 mb-4 tracking-tight">📋 我的刊登汽車 · 車源管理系統</h2>
-                    <p class="text-slate-300 text-base leading-relaxed max-w-2xl mx-auto">在此檢視您目前在 U-Turn 所刊登的所有愛車，並可直接進行下架管理。</p>
+                    <p class="text-slate-300 text-base leading-relaxed max-w-2xl mx-auto">在此檢視您目前在 U-Turn 所刊登的所有愛車，並可直接進行下架管理[cite: 1]。</p>
                 </div>
 
-                <!-- 動態載入容器 -->
+                <!-- 動態載入容器[cite: 1] -->
                 <div id="my-cars-container">
                     <div class="text-center py-20 text-slate-400 bg-white rounded-3xl border border-slate-100 shadow-sm">
                         <span class="font-medium text-slate-500">正在檢查會員登入狀態...</span>
@@ -321,13 +379,13 @@
             </div>
         </section>
 
-        <!-- 分頁 4：高價收車 (Dealer Acquisition Tab) -->
+        <!-- 分頁 5：高價收車 (Dealer Acquisition Tab)[cite: 1] -->
         <section id="tab-dealer-acquire" class="tab-content hidden">
             <div class="max-w-4xl mx-auto space-y-10">
                 <div class="bg-gradient-to-br from-indigo-950 via-slate-900 to-blue-950 text-white rounded-3xl p-8 md:p-12 shadow-2xl border border-slate-800 text-center">
                     <span class="text-indigo-400 font-bold text-xs uppercase tracking-widest bg-indigo-900/60 px-3.5 py-1.5 rounded-full border border-indigo-700/50">HIGH PRICE CAR ACQUISITION</span>
                     <h2 class="text-3xl md:text-4xl font-extrabold mt-3 mb-4 tracking-tight">🏢 專業高價收車 · 專人到府估價</h2>
-                    <p class="text-slate-300 text-base leading-relaxed max-w-2xl mx-auto">不想花時間自己慢慢跟買家殺價？U-Turn 專業團隊提供全台免費到府估價、高價現金收購、快速過戶、結清貸款一次搞定！</p>
+                    <p class="text-slate-300 text-base leading-relaxed max-w-2xl mx-auto">不想花時間自己慢慢跟買家殺價？U-Turn 專業團隊提供全台免費到府估價、高價現金收購、快速過戶、結清貸款一次搞定[cite: 1]！</p>
                     
                     <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
                         <a href="tel:0986510996" class="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-6 py-3.5 rounded-2xl shadow-lg transition-all flex items-center gap-2">
@@ -359,13 +417,13 @@
             </div>
         </section>
 
-        <!-- 分頁 5：車貸試算 (Loan Calculator Tab) -->
+        <!-- 分頁 6：車貸試算 (Loan Calculator Tab)[cite: 1] -->
         <section id="tab-loan-calc" class="tab-content hidden">
             <div class="max-w-4xl mx-auto space-y-10">
                 <div class="bg-gradient-to-br from-blue-950 via-slate-900 to-indigo-950 text-white rounded-3xl p-8 md:p-12 shadow-2xl border border-slate-800 text-center">
                     <span class="text-blue-400 font-bold text-xs uppercase tracking-widest bg-blue-900/60 px-3.5 py-1.5 rounded-full border border-blue-700/50">CAR LOAN CALCULATOR</span>
                     <h2 class="text-3xl md:text-4xl font-extrabold mt-3 mb-4 tracking-tight">💰 車貸分期試算 · 輕鬆掌握月付金</h2>
-                    <p class="text-slate-300 text-base leading-relaxed max-w-2xl mx-auto">買車不再有負擔！輸入車價與頭期款，即時試算每個月的預估分期月付金，讓購車預算規劃更精準。</p>
+                    <p class="text-slate-300 text-base leading-relaxed max-w-2xl mx-auto">買車不再有負擔！輸入車價與頭期款，即時試算每個月的預估分期月付金，讓購車預算規劃更精準[cite: 1]。</p>
                 </div>
 
                 <div class="grid md:grid-cols-12 gap-8 items-start">
@@ -439,13 +497,13 @@
             </div>
         </section>
 
-        <!-- 分頁 6：過戶指南 (Transfer Guide Tab) -->
+        <!-- 分頁 7：過戶指南 (Transfer Guide Tab)[cite: 1] -->
         <section id="tab-transfer-guide" class="tab-content hidden">
             <div class="bg-white border border-slate-100 rounded-3xl p-8 md:p-14 shadow-xl shadow-slate-200/50 max-w-5xl mx-auto">
                 <div class="text-center max-w-2xl mx-auto mb-14">
                     <span class="text-blue-600 font-bold text-xs uppercase tracking-widest bg-blue-50 px-3.5 py-1.5 rounded-full border border-blue-100">TRANSFER GUIDE</span>
                     <h2 class="text-3xl md:text-4xl font-extrabold mt-3 mb-4 text-slate-900 tracking-tight">📄 過戶指南 · 完整流程與證件</h2>
-                    <p class="text-slate-600 text-base">在 U-Turn 成交後，個人買賣雙方如何輕鬆辦理過戶？完整證件與 4 大步驟一次掌握！</p>
+                    <p class="text-slate-600 text-base">在 U-Turn 成交後[cite: 1]，個人買賣雙方如何輕鬆辦理過戶？完整證件與 4 大步驟一次掌握！</p>
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-8 mb-12">
@@ -505,49 +563,49 @@
             </div>
         </section>
 
-        <!-- 分頁 7：使用步驟 (Steps Tab) -->
+        <!-- 分頁 8：使用步驟 (Steps Tab)[cite: 1] -->
         <section id="tab-steps" class="tab-content hidden">
             <div class="max-w-4xl mx-auto bg-gradient-to-br from-blue-50/70 to-indigo-50/40 border border-blue-100/80 rounded-3xl p-8 md:p-14 shadow-xl shadow-blue-500/5">
                 <div class="text-center max-w-2xl mx-auto mb-14">
                     <span class="text-blue-600 font-bold text-xs uppercase tracking-widest bg-white px-3.5 py-1.5 rounded-full shadow-xs border border-blue-100">STEPS</span>
                     <h2 class="text-3xl md:text-4xl font-extrabold mt-3 mb-4 text-slate-900 tracking-tight">使用步驟 · 輕鬆三步驟</h2>
-                    <p class="text-slate-600 text-base">無論想換新車或幫愛車找新家，從這裡開始只需一分鐘</p>
+                    <p class="text-slate-600 text-base">無論想換新車或幫愛車找新家，從這裡開始只需一分鐘[cite: 1]</p>
                 </div>
                 
                 <div class="grid md:grid-cols-3 gap-6">
                     <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100/80 relative group hover:-translate-y-1 transition-transform">
                         <div class="absolute -top-4 -left-4 w-10 h-10 bg-blue-600 text-white font-black rounded-2xl flex items-center justify-center shadow-md shadow-blue-600/30">01</div>
                         <h4 class="font-bold text-slate-950 text-xl mb-2 mt-2">免費下載 App</h4>
-                        <p class="text-slate-600 text-sm leading-relaxed">前往 Google Play 免費下載安裝 U-Turn 轉角好車應用程式並完成會員登入。</p>
+                        <p class="text-slate-600 text-sm leading-relaxed">前往 Google Play 免費下載安裝 U-Turn 轉角好車應用程式並完成會員登入[cite: 1]。</p>
                     </div>
                     <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100/80 relative group hover:-translate-y-1 transition-transform">
                         <div class="absolute -top-4 -left-4 w-10 h-10 bg-blue-600 text-white font-black rounded-2xl flex items-center justify-center shadow-md shadow-blue-600/30">02</div>
                         <h4 class="font-bold text-slate-950 text-xl mb-2 mt-2">拍照上架 / 瀏覽好車</h4>
-                        <p class="text-slate-600 text-sm leading-relaxed">簡單拍幾張照片就能建立刊登，或依照您的預算與需求精準篩選理想愛車。</p>
+                        <p class="text-slate-600 text-sm leading-relaxed">簡單拍幾張照片就能建立刊登[cite: 1]，或依照您的預算與需求精準篩選理想愛車。</p>
                     </div>
                     <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100/80 relative group hover:-translate-y-1 transition-transform">
                         <div class="absolute -top-4 -left-4 w-10 h-10 bg-blue-600 text-white font-black rounded-2xl flex items-center justify-center shadow-md shadow-blue-600/30">03</div>
                         <h4 class="font-bold text-slate-950 text-xl mb-2 mt-2">即時溝通、順利成交</h4>
-                        <p class="text-slate-600 text-sm leading-relaxed">透過內建即時聊天敲定看車細節，安全、快速且安心地完成交易與紅利積點。</p>
+                        <p class="text-slate-600 text-sm leading-relaxed">透過內建即時聊天敲定看車細節，安全、快速且安心地完成交易與紅利積點[cite: 1]。</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 分頁 8：用戶見證 (Testimonials Tab) -->
+        <!-- 分頁 9：用戶見證 (Testimonials Tab)[cite: 1] -->
         <section id="tab-testimonials" class="tab-content hidden">
             <div class="max-w-4xl mx-auto">
                 <div class="text-center mb-16">
                     <span class="text-blue-600 font-bold text-xs uppercase tracking-widest bg-blue-50 px-3.5 py-1.5 rounded-full border border-blue-100">TESTIMONIALS</span>
                     <h2 class="text-3xl md:text-4xl font-extrabold mt-3 mb-4 text-slate-900 tracking-tight">用戶見證 · 真實好評</h2>
-                    <p class="text-slate-600 text-base">聽聽看他們如何在 U-Turn 順利找到理想好車或賣出好價格</p>
+                    <p class="text-slate-600 text-base">聽聽看他們如何在 U-Turn 順利找到理想好車或賣出好價格[cite: 1]</p>
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-8">
                     <div class="bg-white p-8 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 flex flex-col justify-between">
                         <div>
                             <div class="flex text-yellow-400 mb-4 text-lg">★★★★★</div>
-                            <p class="text-slate-700 italic leading-relaxed mb-6 text-sm md:text-base">「之前找傳統車商估價被剝了好幾層皮，朋友推薦我用 U-Turn 的高價收車服務，直接聯繫 0986510996 或加 LINE 非常有效率，價格比一般車行高超多！」</p>
+                            <p class="text-slate-700 italic leading-relaxed mb-6 text-sm md:text-base">「之前找傳統車商估價被剝了好幾層皮，朋友推薦我用 U-Turn 的高價收車服務[cite: 1]，直接聯繫 0986510996 或加 LINE 非常有效率！」</p>
                         </div>
                         <div class="flex items-center gap-4 border-t border-slate-100 pt-4">
                             <div class="w-12 h-12 bg-blue-100 text-blue-600 font-bold rounded-2xl flex items-center justify-center shadow-inner">林</div>
@@ -561,7 +619,7 @@
                     <div class="bg-white p-8 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 flex flex-col justify-between">
                         <div>
                             <div class="flex text-yellow-400 mb-4 text-lg">★★★★★</div>
-                            <p class="text-slate-700 italic leading-relaxed mb-6 text-sm md:text-base">「介面非常直覺好用！上面的車況標示得很清楚，直接透過即時聊聊跟車主約看車，過程非常透明乾淨，大推！」</p>
+                            <p class="text-slate-700 italic leading-relaxed mb-6 text-sm md:text-base">「介面非常直覺好用！上面的車況標示得很清楚，直接透過即時聊聊跟車主約看車，過程非常透明乾淨，大推[cite: 1]！」</p>
                         </div>
                         <div class="flex items-center gap-4 border-t border-slate-100 pt-4">
                             <div class="w-12 h-12 bg-indigo-100 text-indigo-600 font-bold rounded-2xl flex items-center justify-center shadow-inner">陳</div>
@@ -575,13 +633,13 @@
             </div>
         </section>
 
-        <!-- 分頁 9：常見問題 (FAQ Tab) -->
+        <!-- 分頁 10：常見問題 (FAQ Tab)[cite: 1] -->
         <section id="tab-faq" class="tab-content hidden">
             <div class="max-w-4xl mx-auto">
                 <div class="text-center mb-16">
                     <span class="text-blue-600 font-bold text-xs uppercase tracking-widest bg-blue-50 px-3.5 py-1.5 rounded-full border border-blue-100">FAQ</span>
                     <h2 class="text-3xl md:text-4xl font-extrabold mt-3 mb-4 text-slate-900 tracking-tight">常見問題</h2>
-                    <p class="text-slate-600 text-base">解答您對於 U-Turn 轉角好車與會員點數系統的各種疑問</p>
+                    <p class="text-slate-600 text-base">解答您對於 U-Turn 轉角好車與會員聊天室系統的各種疑問[cite: 1]</p>
                 </div>
                 
                 <div class="space-y-4">
@@ -591,7 +649,17 @@
                             <span class="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center group-open:rotate-180 transition-transform shadow-xs">▼</span>
                         </summary>
                         <p class="mt-4 text-slate-600 leading-relaxed text-sm md:text-base border-t border-slate-100 pt-4">
-                            點擊右上角「會員登入」，同時輸入您的**「姓名」**與**「會員編號 ID」**，系統會至資料庫 `member_points` 表進行雙重比對，吻合即可成功登入並隨時檢視您的紅利點數與帳戶狀態！
+                            點擊右上角「會員登入」，同時輸入您的**「姓名」**與**「會員編號 ID」**，系統會至資料庫 `member_points` 表進行雙重比對[cite: 1]，吻合即可成功登入並隨時檢視您的紅利點數與帳戶狀態！
+                        </p>
+                    </details>
+
+                    <details class="bg-white p-6 md:p-8 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 group transition-all">
+                        <summary class="font-bold text-lg text-slate-900 cursor-pointer flex justify-between items-center select-none">
+                            為什麼使用聊天室必須先登入會員？
+                            <span class="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center group-open:rotate-180 transition-transform shadow-xs">▼</span>
+                        </summary>
+                        <p class="mt-4 text-slate-600 leading-relaxed text-sm md:text-base border-t border-slate-100 pt-4">
+                            為了確保買賣雙方都能享有安全、真實的溝通環境並防止惡意洗版，U-Turn 聊天系統強制要求必須登入會員（具備有效的 `sender_id` 與 `sender_name`）才能夠傳送與接收私訊訊息[cite: 1]。
                         </p>
                     </details>
 
@@ -601,7 +669,7 @@
                             <span class="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center group-open:rotate-180 transition-transform shadow-xs">▼</span>
                         </summary>
                         <p class="mt-4 text-slate-600 leading-relaxed text-sm md:text-base border-t border-slate-100 pt-4">
-                            必須登入會員後即可免費使用個人賣車系統上架愛車，直接對接買家無須負擔高額仲介費！
+                            必須登入會員後即可免費使用個人賣車系統上架愛車[cite: 1]，直接對接買家無須負擔高額仲介費！
                         </p>
                     </details>
 
@@ -611,17 +679,7 @@
                             <span class="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center group-open:rotate-180 transition-transform shadow-xs">▼</span>
                         </summary>
                         <p class="mt-4 text-slate-600 leading-relaxed text-sm md:text-base border-t border-slate-100 pt-4">
-                            您可以直接撥打專線 <strong>0986510996</strong> 或透過 LINE（<a href="https://line.me/ti/p/V2jHA4sh5F" target="_blank" class="text-blue-600 underline">https://line.me/ti/p/V2jHA4sh5F</a>）聯繫我們。或至「高價收車」分頁填寫預約單，我們將由專業估價師提供高於市場行情的收購價與免費到府估價服務。
-                        </p>
-                    </details>
-
-                    <details class="bg-white p-6 md:p-8 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 group transition-all">
-                        <summary class="font-bold text-lg text-slate-900 cursor-pointer flex justify-between items-center select-none">
-                            目前支援哪些作業系統？
-                            <span class="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center group-open:rotate-180 transition-transform shadow-xs">▼</span>
-                        </summary>
-                        <p class="mt-4 text-slate-600 leading-relaxed text-sm md:text-base border-t border-slate-100 pt-4">
-                            現已正式上架 Google Play 商店，Android 用戶可直接點擊頁面下載使用。
+                            您可以直接撥打專線 <strong>0986510996</strong> 或透過 LINE（<a href="https://line.me/ti/p/V2jHA4sh5F" target="_blank" class="text-blue-600 underline">https://line.me/ti/p/V2jHA4sh5F</a>）聯繫我們[cite: 1]。或至「高價收車」分頁填寫預約單，我們將由專業估價師提供高於市場行情的收購價與免費到府估價服務[cite: 1]。
                         </p>
                     </details>
                 </div>
@@ -630,18 +688,18 @@
 
     </main>
 
-    <!-- 車輛詳細資料彈跳視窗 (Car Detail Modal) -->
+    <!-- 車輛詳細資料彈跳視窗 (Car Detail Modal)[cite: 1] -->
     <div id="car-detail-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-md hidden p-4">
         <div class="bg-white w-full max-w-2xl rounded-3xl p-6 md:p-8 shadow-2xl border border-slate-100 relative max-h-[90vh] overflow-y-auto animate-in fade-in zoom-in duration-200">
             <button onclick="closeCarDetailModal()" class="absolute top-6 right-6 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center font-bold transition-colors cursor-pointer z-10">✕</button>
             
             <div id="car-detail-content">
-                <!-- 動態載入詳細資料與照片 -->
+                <!-- 動態載入詳細資料與照片[cite: 1] -->
             </div>
         </div>
     </div>
 
-    <!-- 會員登入 / 加入會員彈跳視窗 (Member Auth Modal) -->
+    <!-- 會員登入 / 加入會員彈跳視窗 (Member Auth Modal)[cite: 1] -->
     <div id="login-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-md hidden p-4">
         <div class="bg-white w-full max-w-md rounded-3xl p-8 md:p-10 shadow-2xl border border-slate-100 relative animate-in fade-in zoom-in duration-200">
             <button id="close-login-modal" class="absolute top-6 right-6 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center font-bold transition-colors cursor-pointer">✕</button>
@@ -651,16 +709,16 @@
                     <img src="https://raw.githubusercontent.com/WiseConstructionCoLtd/Uturn/main/app_icon.png" alt="Logo" class="w-full h-full object-cover">
                 </div>
                 <h3 id="modal-main-title" class="text-2xl font-extrabold text-slate-900 tracking-tight">U-Turn 會員登入</h3>
-                <p id="modal-main-desc" class="text-slate-500 text-xs md:text-sm mt-1">請輸入您的姓名與會員編號 ID 進行資料庫比對</p>
+                <p id="modal-main-desc" class="text-slate-500 text-xs md:text-sm mt-1">請輸入您的姓名與會員編號 ID 進行資料庫比對[cite: 1]</p>
             </div>
 
-            <!-- 切換登入 / 加入會員分頁切換按鈕 -->
+            <!-- 切換登入 / 加入會員分頁切換按鈕[cite: 1] -->
             <div class="flex bg-slate-100/80 p-1.5 rounded-2xl mb-6 shadow-inner">
                 <button id="switch-to-login-tab" onclick="switchAuthMode('login')" class="flex-1 py-2 text-xs font-bold rounded-xl transition-all bg-white text-blue-600 shadow-sm cursor-pointer">會員登入</button>
                 <button id="switch-to-register-tab" onclick="switchAuthMode('register')" class="flex-1 py-2 text-xs font-bold rounded-xl transition-all text-slate-500 hover:text-slate-800 cursor-pointer">加入會員</button>
             </div>
 
-            <!-- 1. 登入表單 -->
+            <!-- 1. 登入表單[cite: 1] -->
             <div id="login-form-container" class="space-y-4">
                 <div>
                     <label class="block text-xs font-bold text-slate-600 uppercase mb-1.5">會員姓名 (Name)</label>
@@ -684,7 +742,7 @@
                 </button>
             </div>
 
-            <!-- 2. 加入會員表單 -->
+            <!-- 2. 加入會員表單[cite: 1] -->
             <div id="register-form-container" class="space-y-4 hidden">
                 <div>
                     <label class="block text-xs font-bold text-slate-600 uppercase mb-1.5">設定會員姓名 (Name)</label>
@@ -700,7 +758,7 @@
                         <span>📜</span> 個人資料保護與洩密防範聲明
                     </div>
                     <p class="leading-relaxed text-[11px] text-slate-500">
-                        歡迎加入 U-Turn 轉角好車。本平台嚴格遵守個人資料保護法。您所填寫之姓名與 ID 將僅用於會員身分識別與紅利點數記錄。
+                        歡迎加入 U-Turn 轉角好車。本平台嚴格遵守個人資料保護法。您所填寫之姓名與 ID 將僅用於會員身分識別與紅利點數記錄[cite: 1]。
                     </p>
                     <label class="flex items-start gap-2.5 pt-1 cursor-pointer select-none">
                         <input type="checkbox" id="reg-agree-checkbox" class="mt-0.5 w-4 h-4 text-blue-600 border-slate-300 rounded focus:ring-blue-500 cursor-pointer">
@@ -714,7 +772,7 @@
                 </button>
             </div>
 
-            <!-- 已登入會員資訊面板 -->
+            <!-- 已登入會員資訊面板[cite: 1] -->
             <div id="member-info-container" class="hidden space-y-4">
                 <div class="bg-gradient-to-br from-blue-50 to-indigo-50/50 border border-blue-100 rounded-3xl p-6 text-center shadow-inner">
                     <div class="text-xs text-blue-600 font-extrabold uppercase tracking-widest mb-1.5">驗證成功 · 歡迎回來</div>
@@ -736,7 +794,7 @@
         </div>
     </div>
 
-    <!-- 聯絡車主彈跳視窗 (Contact Owner Modal) -->
+    <!-- 聯絡車主彈跳視窗 (Contact Owner Modal)[cite: 1] -->
     <div id="contact-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-md hidden p-4">
         <div class="bg-white w-full max-w-md rounded-3xl p-8 md:p-10 shadow-2xl border border-slate-100 relative text-center animate-in fade-in zoom-in duration-200">
             <button id="close-contact-modal" class="absolute top-6 right-6 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center font-bold transition-colors cursor-pointer">✕</button>
@@ -749,7 +807,7 @@
         </div>
     </div>
 
-    <!-- 私訊賣家即時聊天室彈跳視窗 (Chat Modal) -->
+    <!-- 私訊賣家即時聊天室彈跳視窗 (Chat Modal)[cite: 1] -->
     <div id="chat-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-md hidden p-4">
         <div class="bg-white w-full max-w-lg rounded-3xl p-6 md:p-8 shadow-2xl border border-slate-100 relative flex flex-col h-[600px] max-h-[90vh]">
             <button id="close-chat-modal" class="absolute top-6 right-6 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center font-bold transition-colors cursor-pointer">✕</button>
@@ -775,7 +833,7 @@
         </div>
     </div>
 
-    <!-- Footer -->
+    <!-- Footer[cite: 1] -->
     <footer class="text-center py-10 text-sm text-slate-500 border-t border-slate-200 bg-white/80 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
             <p>&copy; 2026 U-Turn 轉角好車. All Rights Reserved.</p>
@@ -788,10 +846,22 @@
         </div>
     </footer>
 
-    <!-- JavaScript -->
+    <!-- JavaScript[cite: 1] -->
     <script>
-        // 1. 分頁切換邏輯 (Tabs Switching)
+        // 1. 分頁切換邏輯 (Tabs Switching)[cite: 1]
         function switchTab(tabId) {
+            // 如果切換到聊天室分頁，進行會員登入檢查[cite: 1]
+            if (tabId === 'chat-room') {
+                const savedMember = localStorage.getItem('uturn_member') || sessionStorage.getItem('uturn_member');
+                if (!savedMember) {
+                    alert('⚠️ 必須先登入會員才能使用聊天室系統！');
+                    openLoginModal();
+                    return;
+                } else {
+                    loadChatRoomTab();
+                }
+            }
+
             document.querySelectorAll('.tab-content').forEach(el => {
                 el.classList.add('hidden');
             });
@@ -810,7 +880,7 @@
                 activeBtn.classList.add('text-blue-400', 'bg-blue-950/85', 'border', 'border-blue-700/50', 'shadow-sm');
             }
 
-            // 若切換到「我的刊登汽車」分頁，觸發渲染檢查
+            // 若切換到「我的刊登汽車」分頁，觸發渲染檢查[cite: 1]
             if (tabId === 'my-cars') {
                 renderMyCars();
             }
@@ -818,7 +888,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // 手機版漢堡選單控制
+        // 手機版漢堡選單控制[cite: 1]
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
 
@@ -830,7 +900,7 @@
             mobileMenu.classList.add('hidden');
         }
 
-        // 2. 車貸試算邏輯 (Loan Calculator Logic)
+        // 2. 車貸試算邏輯 (Loan Calculator Logic)[cite: 1]
         function calculateLoan() {
             const carPrice = parseFloat(document.getElementById('calc-car-price').value) || 0;
             const downPayment = parseFloat(document.getElementById('calc-down-payment').value) || 0;
@@ -870,7 +940,7 @@
 
         calculateLoan();
 
-        // 3. Supabase 設定與車源串接
+        // 3. Supabase 設定與車源串接[cite: 1]
         const SUPABASE_URL = 'https://hjbhwtrypiqiusadzatl.supabase.co';
         const SUPABASE_ANON_KEY = 'sb_publishable_wp5rNGkZc_T40Lk5bm0Y1Q_khbX4ycS';
 
@@ -891,7 +961,7 @@
                 allCars = await response.json();
                 renderCars(allCars);
 
-                // 如果目前在「我的刊登汽車」分頁，順便更新
+                // 如果目前在「我的刊登汽車」分頁，順便更新[cite: 1]
                 const myCarsTab = document.getElementById('tab-my-cars');
                 if (myCarsTab && !myCarsTab.classList.contains('hidden')) {
                     renderMyCars();
@@ -973,7 +1043,7 @@
             }).join('');
         }
 
-        // 4. 顯示車輛詳細資料彈跳視窗與多張照片檢視
+        // 4. 顯示車輛詳細資料彈跳視窗[cite: 1]
         function showCarDetail(carId) {
             const car = allCars.find(c => Number(c.id) === Number(carId));
             if (!car) return;
@@ -995,7 +1065,6 @@
             const detailContainer = document.getElementById('car-detail-content');
             detailContainer.innerHTML = `
                 <div class="space-y-6">
-                    <!-- 照片相簿展示區 -->
                     <div>
                         <div class="relative h-72 sm:h-96 rounded-2xl overflow-hidden bg-slate-100 mb-3 shadow-inner">
                             <img id="detail-main-img" src="${images[0]}" class="w-full h-full object-cover">
@@ -1012,13 +1081,11 @@
                         ` : ''}
                     </div>
 
-                    <!-- 車款標題與售價 -->
                     <div>
                         <div class="text-2xl md:text-3xl font-extrabold text-slate-900 mb-2">${car.title || '無標題車輛'}</div>
                         <div class="text-3xl font-black text-blue-600 tracking-tight">${formattedPrice}</div>
                     </div>
 
-                    <!-- 詳細規格格線 -->
                     <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 bg-slate-50 p-5 rounded-2xl border border-slate-100 text-sm shadow-inner">
                         <div>
                             <span class="block text-xs text-slate-400 font-bold uppercase mb-0.5">出廠年份</span>
@@ -1046,7 +1113,6 @@
                         </div>
                     </div>
 
-                    <!-- 車輛詳細描述 -->
                     ${car.description ? `
                         <div>
                             <h4 class="text-xs font-bold text-slate-400 uppercase mb-2">車輛詳細描述與特色</h4>
@@ -1054,7 +1120,6 @@
                         </div>
                     ` : ''}
 
-                    <!-- 底部互動按鈕 -->
                     <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
                         <button onclick="closeCarDetailModal(); showContactModal('${safePhone}', '${safeSellerName}', '${safeTitle}')" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-3.5 rounded-2xl transition-all shadow-sm cursor-pointer flex items-center justify-center gap-2">
                             <span>📞</span> 聯絡電話
@@ -1072,18 +1137,17 @@
             document.getElementById('car-detail-modal').classList.add('hidden');
         }
 
-        // 5. 「我的刊登汽車」渲染與下架管理邏輯
+        // 5. 「我的刊登汽車」渲染與下架管理邏輯[cite: 1]
         function renderMyCars() {
             const container = document.getElementById('my-cars-container');
             const savedMember = localStorage.getItem('uturn_member') || sessionStorage.getItem('uturn_member');
 
-            // 檢查未登入狀態
             if (!savedMember) {
                 container.innerHTML = `
                     <div class="bg-white rounded-3xl p-12 text-center shadow-xl shadow-slate-200/50 border border-slate-100 space-y-5">
                         <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-3xl flex items-center justify-center text-3xl mx-auto shadow-inner">🔒</div>
                         <h3 class="text-2xl font-extrabold text-slate-900">尚未登入會員</h3>
-                        <p class="text-slate-500 text-sm max-w-md mx-auto leading-relaxed">您目前尚未登入會員。請先加入或登入會員，即可在此檢視並管理您所刊登的所有愛車！</p>
+                        <p class="text-slate-500 text-sm max-w-md mx-auto leading-relaxed">您目前尚未登入會員。請先加入或登入會員，即可在此檢視並管理您所刊登的所有愛車[cite: 1]！</p>
                         <button onclick="openLoginModal()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-3.5 rounded-2xl shadow-lg shadow-blue-600/30 transition-all cursor-pointer">
                             立即登入 / 加入會員
                         </button>
@@ -1100,7 +1164,7 @@
                     <div class="bg-white rounded-3xl p-12 text-center shadow-xl shadow-slate-200/50 border border-slate-100 space-y-5">
                         <div class="w-16 h-16 bg-slate-50 text-slate-400 rounded-3xl flex items-center justify-center text-3xl mx-auto shadow-inner">🚗</div>
                         <h3 class="text-2xl font-extrabold text-slate-900">目前沒有刊登中的汽車</h3>
-                        <p class="text-slate-500 text-sm max-w-md mx-auto leading-relaxed">您（${currentMember.name} / ID: ${currentMember.id}）目前尚未在 U-Turn 刊登任何愛車。</p>
+                        <p class="text-slate-500 text-sm max-w-md mx-auto leading-relaxed">您（${currentMember.name} / ID: ${currentMember.id}）目前尚未在 U-Turn 刊登任何愛車[cite: 1]。</p>
                         <button onclick="switchTab('sell-car')" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-3.5 rounded-2xl shadow-lg shadow-blue-600/30 transition-all cursor-pointer">
                             🚀 馬上去刊登賣車
                         </button>
@@ -1178,7 +1242,7 @@
             }
         }
 
-        // 6. 篩選與排序邏輯 (整合品牌篩選)
+        // 6. 篩選與排序邏輯[cite: 1]
         function filterAndSortCars() {
             const keyword = document.getElementById('search-input').value.toLowerCase().trim();
             const selectedLocation = document.getElementById('location-filter').value;
@@ -1195,7 +1259,6 @@
                 const matchesLocation = !selectedLocation || (car.location && car.location.includes(selectedLocation));
                 const matchesCondition = !selectedCondition || (car.condition && car.condition.includes(selectedCondition));
                 
-                // 品牌篩選比對
                 const matchesBrand = !selectedBrand || 
                     (car.title && car.title.toLowerCase().includes(selectedBrand.toLowerCase())) || 
                     (car.brand && car.brand.toLowerCase() === selectedBrand.toLowerCase());
@@ -1225,7 +1288,7 @@
         document.getElementById('brand-filter').addEventListener('change', filterAndSortCars);
         document.getElementById('sort-select').addEventListener('change', filterAndSortCars);
 
-        // 7. 會員登入與加入會員系統互動邏輯
+        // 7. 會員登入系統互動邏輯[cite: 1]
         const loginModal = document.getElementById('login-modal');
         const openLoginBtn = document.getElementById('open-login-modal');
         const closeLoginBtn = document.getElementById('close-login-modal');
@@ -1251,14 +1314,14 @@
                 switchToLoginTabBtn.className = "flex-1 py-2 text-xs font-bold rounded-xl transition-all bg-white text-blue-600 shadow-sm cursor-pointer";
                 switchToRegisterTabBtn.className = "flex-1 py-2 text-xs font-bold rounded-xl transition-all text-slate-500 hover:text-slate-800 cursor-pointer";
                 modalMainTitle.textContent = "U-Turn 會員登入";
-                modalMainDesc.textContent = "請輸入您的姓名與會員編號 ID 進行資料庫比對";
+                modalMainDesc.textContent = "請輸入您的姓名與會員編號 ID 進行資料庫比對[cite: 1]";
             } else {
                 loginFormContainer.classList.add('hidden');
                 registerFormContainer.classList.remove('hidden');
                 switchToRegisterTabBtn.className = "flex-1 py-2 text-xs font-bold rounded-xl transition-all bg-white text-blue-600 shadow-sm cursor-pointer";
                 switchToLoginTabBtn.className = "flex-1 py-2 text-xs font-bold rounded-xl transition-all text-slate-500 hover:text-slate-800 cursor-pointer";
                 modalMainTitle.textContent = "U-Turn 加入會員";
-                modalMainDesc.textContent = "填寫姓名與自訂 ID，立即註冊專屬會員帳號";
+                modalMainDesc.textContent = "填寫姓名與自訂 ID，立即註冊專屬會員帳號[cite: 1]";
             }
         }
 
@@ -1356,6 +1419,7 @@
                     }
                     showMemberInfo(member);
                     loginModal.classList.add('hidden');
+                    
                     const myCarsTab = document.getElementById('tab-my-cars');
                     if (myCarsTab && !myCarsTab.classList.contains('hidden')) {
                         renderMyCars();
@@ -1439,14 +1503,9 @@
                 const member = insertedData[0] || newMemberPayload;
 
                 localStorage.setItem('uturn_member', JSON.stringify(member));
-                alert('🎉 恭喜您成功加入 U-Turn 會員！已獲得 10 點迎新紅利！');
+                alert('🎉 恭喜您成功加入 U-Turn 會員！已獲得 10 點迎新紅利[cite: 1]！');
                 showMemberInfo(member);
                 loginModal.classList.add('hidden');
-
-                const myCarsTab = document.getElementById('tab-my-cars');
-                if (myCarsTab && !myCarsTab.classList.contains('hidden')) {
-                    renderMyCars();
-                }
 
             } catch (err) {
                 console.error(err);
@@ -1475,13 +1534,14 @@
             navMemberText.textContent = '會員';
             updateSellPageState(null);
 
-            const myCarsTab = document.getElementById('tab-my-cars');
-            if (myCarsTab && !myCarsTab.classList.contains('hidden')) {
-                renderMyCars();
+            // 若目前在聊天室分頁，自動切回車源大廳[cite: 1]
+            const chatTab = document.getElementById('tab-chat-room');
+            if (chatTab && !chatTab.classList.contains('hidden')) {
+                switchTab('cars');
             }
         });
 
-        // 8. 本地多張圖片壓縮與預覽管理系統
+        // 8. 本地多張圖片壓縮與預覽管理系統[cite: 1]
         let uploadedBase64Images = [];
         const carImageFilesInput = document.getElementById('car-image-files');
         const imagePreviewContainer = document.getElementById('image-preview-container');
@@ -1568,7 +1628,7 @@
             renderImagePreviews();
         }
 
-        // 9. 刊登汽車系統邏輯
+        // 9. 刊登汽車系統邏輯[cite: 1]
         const submitPublishBtn = document.getElementById('submit-publish-btn');
         const publishError = document.getElementById('publish-error');
 
@@ -1634,7 +1694,7 @@
 
                 if (!response.ok) throw new Error('刊登車輛寫入失敗');
 
-                alert('🎉 恭喜您！愛車與多張照片已成功刊登至 U-Turn 轉角好車大廳！');
+                alert('🎉 恭喜您！愛車與多張照片已成功刊登至 U-Turn 轉角好車大廳[cite: 1]！');
                 
                 document.getElementById('car-title-input').value = '';
                 document.getElementById('car-price-input').value = '';
@@ -1660,7 +1720,7 @@
             }
         });
 
-        // 10. 聯絡車主彈跳視窗
+        // 10. 聯絡車主彈跳視窗[cite: 1]
         const contactModal = document.getElementById('contact-modal');
         const closeContactModalBtn = document.getElementById('close-contact-modal');
 
@@ -1697,7 +1757,7 @@
         closeContactModalBtn.addEventListener('click', closeContactModal);
         contactModal.addEventListener('click', (e) => { if (e.target === contactModal) closeContactModal(); });
 
-        // 11. 私訊聊天系統
+        // 11. 私訊聊天系統與專屬聊天室分頁連動[cite: 1]
         let currentChatTarget = null;
         const chatModal = document.getElementById('chat-modal');
         const closeChatModalBtn = document.getElementById('close-chat-modal');
@@ -1708,7 +1768,7 @@
         async function openChatModal(sellerId, sellerName, carTitle) {
             const savedMember = localStorage.getItem('uturn_member') || sessionStorage.getItem('uturn_member');
             if (!savedMember) {
-                alert('⚠️ 必須先登入會員才能使用私訊聊天系統！防止機器打擾別人');
+                alert('⚠️ 必須先登入會員才能使用私訊聊天系統！');
                 loginModal.classList.remove('hidden');
                 return;
             }
@@ -1826,7 +1886,186 @@
         closeChatModalBtn.addEventListener('click', () => { chatModal.classList.add('hidden'); });
         chatModal.addEventListener('click', (e) => { if (e.target === chatModal) chatModal.classList.add('hidden'); });
 
-        // 初始化
+        // 12. 專屬聊天室分頁 (Chat Room Tab) 完整載入與管理邏輯（已優化：自動從資料庫批次撈取並顯示真實會員姓名）[cite: 1]
+        let currentTabChatPartner = null;
+
+        async function loadChatRoomTab() {
+            const savedMember = localStorage.getItem('uturn_member') || sessionStorage.getItem('uturn_member');
+            if (!savedMember) return;
+
+            const currentMember = JSON.parse(savedMember);
+            document.getElementById('chat-tab-login-prompt').classList.add('hidden');
+            document.getElementById('chat-tab-interface').classList.remove('hidden');
+            document.getElementById('chat-user-badge').textContent = `${currentMember.name} (ID: ${currentMember.id})`;
+
+            const listContainer = document.getElementById('chat-conversations-list');
+            listContainer.innerHTML = '<div class="text-center text-slate-400 py-10 text-xs">載入對話列表中...</div>';
+
+            try {
+                const res = await fetch(`${SUPABASE_URL}/rest/v1/messages?or=(sender_id.eq.${currentMember.id},receiver_id.eq.${currentMember.id})&order=created_at.desc`, {
+                    headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` }
+                });
+                if (!res.ok) throw new Error('無法取得聊天清單');
+                const messages = await res.json();
+
+                // 整理對話對象
+                const partnersMap = new Map();
+                messages.forEach(msg => {
+                    const isSender = Number(msg.sender_id) === Number(currentMember.id);
+                    const partnerId = isSender ? msg.receiver_id : msg.sender_id;
+                    const msgPartnerName = isSender ? msg.receiver_name : msg.sender_name;
+                    
+                    if (!partnersMap.has(partnerId)) {
+                        partnersMap.set(partnerId, {
+                            partnerId: partnerId,
+                            partnerName: msgPartnerName || ('會員 #' + partnerId),
+                            lastMessage: msg.content,
+                            carTitle: msg.car_title || 'U-Turn 嚴選好車',
+                            createdAt: msg.created_at
+                        });
+                    }
+                });
+
+                // 批次從 member_points 查詢所有對話對象的真實會員姓名，避免顯示「會員 #ID」
+                const partnerIds = Array.from(partnersMap.keys());
+                if (partnerIds.length > 0) {
+                    try {
+                        const memberRes = await fetch(`${SUPABASE_URL}/rest/v1/member_points?id=in.(${partnerIds.join(',')})&select=id,name`, {
+                            headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` }
+                        });
+                        if (memberRes.ok) {
+                            const membersData = await memberRes.json();
+                            membersData.forEach(m => {
+                                if (partnersMap.has(m.id)) {
+                                    const partner = partnersMap.get(m.id);
+                                    if (m.name) {
+                                        partner.partnerName = m.name;
+                                    }
+                                }
+                            });
+                        }
+                    } catch (err) {
+                        console.error('查詢對話會員姓名失敗', err);
+                    }
+                }
+
+                const partners = Array.from(partnersMap.values());
+                if (partners.length === 0) {
+                    listContainer.innerHTML = '<div class="text-center text-slate-400 py-12 text-xs">目前尚無任何對話紀錄。<br>請至車源大廳點擊「私訊賣家」開始聊天！</div>';
+                    return;
+                }
+
+                listContainer.innerHTML = partners.map(p => `
+                    <div onclick="selectTabChatPartner(${p.partnerId}, '${p.partnerName.replace(/'/g, "\\'")}', '${(p.carTitle || '').replace(/'/g, "\\'")}')" class="p-3.5 rounded-2xl bg-white border border-slate-200/80 hover:border-blue-500 hover:shadow-md transition-all cursor-pointer group">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="font-bold text-slate-900 text-sm group-hover:text-blue-600 transition-colors">${p.partnerName}</span>
+                            <span class="text-[10px] text-slate-400">${new Date(p.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
+                        </div>
+                        <div class="text-xs text-blue-600 font-medium truncate mb-1">🚗 ${p.carTitle}</div>
+                        <div class="text-xs text-slate-500 truncate">${p.lastMessage}</div>
+                    </div>
+                `).join('');
+
+            } catch (err) {
+                console.error(err);
+                listContainer.innerHTML = '<div class="text-center text-red-400 py-10 text-xs">載入對話清單失敗</div>';
+            }
+        }
+
+        async function selectTabChatPartner(partnerId, partnerName, carTitle) {
+            const savedMember = localStorage.getItem('uturn_member') || sessionStorage.getItem('uturn_member');
+            if (!savedMember) return;
+            const currentMember = JSON.parse(savedMember);
+
+            currentTabChatPartner = { partnerId, partnerName, carTitle };
+            document.getElementById('active-chat-title').textContent = `與 ${partnerName} 對話中`;
+            document.getElementById('active-chat-subtitle').textContent = `關聯車款：${carTitle}`;
+
+            document.getElementById('chat-tab-input').disabled = false;
+            document.getElementById('chat-tab-send-btn').disabled = false;
+
+            await fetchTabChatMessages(currentMember.id, partnerId);
+        }
+
+        async function fetchTabChatMessages(currentUserId, partnerId) {
+            const box = document.getElementById('chat-tab-messages-box');
+            box.innerHTML = '<div class="text-center text-slate-400 py-10 text-xs">載入對話紀錄中...</div>';
+
+            try {
+                const res = await fetch(`${SUPABASE_URL}/rest/v1/messages?or=(and(sender_id.eq.${currentUserId},receiver_id.eq.${partnerId}),and(sender_id.eq.${partnerId},receiver_id.eq.${currentUserId}))&order=created_at.asc`, {
+                    headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` }
+                });
+                if (!res.ok) throw new Error('無法取得訊息');
+                const msgs = await res.json();
+
+                if (msgs.length === 0) {
+                    box.innerHTML = '<div class="text-center text-slate-400 py-16 text-xs">開始與對方對話吧！</div>';
+                    return;
+                }
+
+                box.innerHTML = msgs.map(m => {
+                    const isMe = Number(m.sender_id) === Number(currentUserId);
+                    const time = new Date(m.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                    return `
+                        <div class="flex flex-col ${isMe ? 'items-end' : 'items-start'}">
+                            <div class="text-[10px] text-slate-400 mb-1 px-1">${isMe ? '我' : m.sender_name} · ${time}</div>
+                            <div class="max-w-[80%] px-4 py-3 rounded-2xl text-sm shadow-sm ${isMe ? 'bg-blue-600 text-white rounded-br-xs' : 'bg-white text-slate-800 border border-slate-200 rounded-bl-xs'}">
+                                ${escapeHtml(m.content)}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+                box.scrollTop = box.scrollHeight;
+
+            } catch (err) {
+                console.error(err);
+                box.innerHTML = '<div class="text-center text-red-400 py-10 text-xs">載入失敗</div>';
+            }
+        }
+
+        async function sendTabChatMessage() {
+            const input = document.getElementById('chat-tab-input');
+            const content = input.value.trim();
+            if (!content || !currentTabChatPartner) return;
+
+            const savedMember = localStorage.getItem('uturn_member') || sessionStorage.getItem('uturn_member');
+            if (!savedMember) return;
+            const currentMember = JSON.parse(savedMember);
+
+            const payload = {
+                sender_id: Number(currentMember.id),
+                receiver_id: Number(currentTabChatPartner.partnerId),
+                content: content,
+                car_title: currentTabChatPartner.carTitle,
+                sender_name: currentMember.name,
+                receiver_name: currentTabChatPartner.partnerName,
+                is_read: false,
+                created_at: new Date().toISOString()
+            };
+
+            try {
+                const res = await fetch(`${SUPABASE_URL}/rest/v1/messages`, {
+                    method: 'POST',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'return=representation'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!res.ok) throw new Error('發送失敗');
+                input.value = '';
+                await fetchTabChatMessages(currentMember.id, currentTabChatPartner.partnerId);
+                await loadChatRoomTab();
+            } catch (err) {
+                console.error(err);
+                alert('發送失敗，請稍後再試。');
+            }
+        }
+
+        // 初始化[cite: 1]
         document.addEventListener('DOMContentLoaded', () => {
             fetchCars();
             const savedMember = localStorage.getItem('uturn_member') || sessionStorage.getItem('uturn_member');
