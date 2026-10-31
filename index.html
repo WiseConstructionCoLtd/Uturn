@@ -21,6 +21,8 @@
 
     <!-- Tailwind CSS[cite: 1] -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- QRCode.js 用於產生 LINE 二維碼小視窗 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body class="bg-gradient-to-br from-slate-50 via-blue-50/20 to-slate-100 text-slate-900 font-sans antialiased selection:bg-blue-600 selection:text-white min-h-screen">
 
@@ -192,7 +194,7 @@
             </div>
         </section>
 
-        <!-- 新增分頁 2：聊天室專區 (Chat Room Tab - 必須登入會員) -->
+        <!-- 分頁 2：聊天室專區 (Chat Room Tab - 必須登入會員) -->
         <section id="tab-chat-room" class="tab-content hidden">
             <div class="max-w-4xl mx-auto space-y-6">
                 <div class="bg-gradient-to-br from-slate-900 to-blue-950 text-white rounded-3xl p-8 shadow-2xl border border-slate-800 text-center">
@@ -297,7 +299,7 @@
                             </div>
                         </div>
 
-                        <div class="grid md:grid-cols-2 gap-6">
+                        <div class="grid md:grid-cols-3 gap-6">
                             <div>
                                 <label class="block text-xs font-bold text-slate-600 uppercase mb-2">所在縣市 (Location)</label>
                                 <select id="car-location-input" class="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all cursor-pointer shadow-inner">
@@ -328,6 +330,10 @@
                             <div>
                                 <label class="block text-xs font-bold text-slate-600 uppercase mb-2">聯絡電話 (Phone)</label>
                                 <input type="text" id="car-phone-input" placeholder="例如: 0912-345678" class="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all shadow-inner">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 uppercase mb-2">LINE URL (加好友連結)</label>
+                                <input type="text" id="car-line-url-input" value="" placeholder="例如: https://line.me/ti/p/..." class="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all shadow-inner">
                             </div>
                         </div>
 
@@ -698,6 +704,25 @@
         </div>
     </div>
 
+    <!-- LINE 二維碼小視窗 (LINE QR Code Modal) -->
+    <div id="line-qr-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-md hidden p-4">
+        <div class="bg-white w-full max-w-sm rounded-3xl p-8 shadow-2xl border border-slate-100 relative text-center animate-in fade-in zoom-in duration-200">
+            <button onclick="closeLineQrModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center font-bold transition-colors cursor-pointer">✕</button>
+            <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-xl font-bold mx-auto mb-3 shadow-inner">💬</div>
+            <h3 class="text-xl font-extrabold text-slate-900 mb-1">LINE 快速加好友</h3>
+            <p class="text-slate-500 text-xs mb-5">請使用手機掃描下方二維碼，或點擊下方按鈕加入</p>
+            
+            <div id="qrcode-container" class="bg-slate-50 p-4 rounded-2xl border border-slate-100 flex justify-center mb-5 shadow-inner"></div>
+            
+            <a id="line-qr-link" href="#" target="_blank" class="block w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-2xl shadow-lg shadow-emerald-600/30 transition-all mb-3">
+                開啟 LINE 連結加好友
+            </a>
+            <button onclick="closeLineQrModal()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2.5 rounded-2xl transition-all cursor-pointer text-sm">
+                關閉
+            </button>
+        </div>
+    </div>
+
     <!-- 會員登入 / 加入會員彈跳視窗 (Member Auth Modal)[cite: 1] -->
     <div id="login-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-md hidden p-4">
         <div class="bg-white w-full max-w-md rounded-3xl p-8 md:p-10 shadow-2xl border border-slate-100 relative animate-in fade-in zoom-in duration-200">
@@ -1005,6 +1030,7 @@
                 const safeSellerName = (car.seller_name || '熱心車主').replace(/'/g, "\\'");
                 const safeTitle = (car.title || 'U-Turn 嚴選好車').replace(/'/g, "\\'");
                 const safeSellerId = car.seller_id ? Number(car.seller_id) : 1;
+                const lineUrl = car.line_url ? car.line_url.trim() : '';
 
                 return `
                     <div class="bg-white rounded-3xl shadow-lg shadow-slate-200/50 hover:shadow-2xl transition-all duration-300 border border-slate-100 overflow-hidden flex flex-col justify-between group">
@@ -1033,8 +1059,12 @@
                             <button onclick="showContactModal('${safePhone}', '${safeSellerName}', '${safeTitle}')" class="flex-1 inline-flex items-center justify-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-bold py-2.5 px-3 rounded-2xl transition-all shadow-xs cursor-pointer">
                                 📞 電話
                             </button>
+                            ${lineUrl ? `
+                            <button onclick="openLineQrModal('${lineUrl}')" class="flex-1 inline-flex items-center justify-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-bold py-2.5 px-3 rounded-2xl transition-all shadow-md shadow-emerald-600/30 cursor-pointer">
+                                💬 LINE
+                            </button>` : ''}
                             <button onclick="openChatModal(${safeSellerId}, '${safeSellerName}', '${safeTitle}')" class="flex-1 inline-flex items-center justify-center gap-1.5 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold py-2.5 px-3 rounded-2xl transition-all shadow-md shadow-blue-600/30 cursor-pointer">
-                                💬 私訊賣家
+                                💬 聊天
                             </button>
                         </div>
                     </div>
@@ -1060,6 +1090,7 @@
             const safeSellerName = (car.seller_name || '熱心車主').replace(/'/g, "\\'");
             const safeTitle = (car.title || 'U-Turn 嚴選好車').replace(/'/g, "\\'");
             const safeSellerId = car.seller_id ? Number(car.seller_id) : 1;
+            const lineUrl = car.line_url ? car.line_url.trim() : '';
 
             const detailContainer = document.getElementById('car-detail-content');
             detailContainer.innerHTML = `
@@ -1123,6 +1154,10 @@
                         <button onclick="closeCarDetailModal(); showContactModal('${safePhone}', '${safeSellerName}', '${safeTitle}')" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-3.5 rounded-2xl transition-all shadow-sm cursor-pointer flex items-center justify-center gap-2">
                             <span>📞</span> 聯絡電話
                         </button>
+                        ${lineUrl ? `
+                        <button onclick="closeCarDetailModal(); openLineQrModal('${lineUrl}')" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 rounded-2xl transition-all shadow-lg shadow-emerald-600/30 cursor-pointer flex items-center justify-center gap-2">
+                            <span>💬</span> LINE
+                        </button>` : ''}
                         <button onclick="closeCarDetailModal(); openChatModal(${safeSellerId}, '${safeSellerName}', '${safeTitle}')" class="flex-1 bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 rounded-2xl transition-all shadow-lg shadow-blue-600/30 cursor-pointer flex items-center justify-center gap-2">
                             <span>💬</span> 私訊賣家
                         </button>
@@ -1134,6 +1169,30 @@
 
         function closeCarDetailModal() {
             document.getElementById('car-detail-modal').classList.add('hidden');
+        }
+
+        // LINE 二維碼小視窗控制
+        function openLineQrModal(url) {
+            const modal = document.getElementById('line-qr-modal');
+            const container = document.getElementById('qrcode-container');
+            const linkBtn = document.getElementById('line-qr-link');
+            
+            container.innerHTML = '';
+            new QRCode(container, {
+                text: url,
+                width: 180,
+                height: 180,
+                colorDark: "#0f172a",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+
+            linkBtn.href = url;
+            modal.classList.remove('hidden');
+        }
+
+        function closeLineQrModal() {
+            document.getElementById('line-qr-modal').classList.add('hidden');
         }
 
         // 5. 「我的刊登汽車」渲染與下架管理邏輯[cite: 1]
@@ -1649,6 +1708,7 @@
             const condition = document.getElementById('car-condition-input').value;
             const location = document.getElementById('car-location-input').value;
             const phone = document.getElementById('car-phone-input').value.trim();
+            const lineUrl = document.getElementById('car-line-url-input').value.trim();
             const description = document.getElementById('car-desc-input').value.trim();
 
             if (!title || !price) {
@@ -1671,6 +1731,7 @@
                 condition: condition,
                 location: location,
                 phone: phone,
+                line_url: lineUrl || null,
                 image_url: primaryImage,
                 image_urls: allImageUrls,
                 description: description,
@@ -1700,6 +1761,7 @@
                 document.getElementById('car-year-input').value = '';
                 document.getElementById('car-mileage-input').value = '';
                 document.getElementById('car-phone-input').value = '';
+                document.getElementById('car-line-url-input').value = 'https://line.me/ti/p/V2jHA4sh5F';
                 document.getElementById('car-desc-input').value = '';
                 carImageFilesInput.value = '';
                 imagePreviewContainer.innerHTML = '';
