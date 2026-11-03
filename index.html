@@ -44,7 +44,7 @@
                 <button onclick="switchTab('transfer-guide')" id="nav-btn-transfer-guide" class="nav-tab-btn px-3.5 py-2 rounded-xl transition-all text-slate-300 hover:text-white hover:bg-slate-800 cursor-pointer">過戶指南</button>
                 <button onclick="switchTab('steps')" id="nav-btn-steps" class="nav-tab-btn px-3.5 py-2 rounded-xl transition-all text-slate-300 hover:text-white hover:bg-slate-800 cursor-pointer">使用步驟</button>
                 <button onclick="switchTab('testimonials')" id="nav-btn-testimonials" class="nav-tab-btn px-3.5 py-2 rounded-xl transition-all text-slate-300 hover:text-white hover:bg-slate-800 cursor-pointer">用戶見證</button>
-                <button onclick="switchTab('faq')" id="nav-btn-faq" class="nav-tab-btn px-3.5 py-2 rounded-xl transition-all text-slate-300 hover:text-white hover:bg-slate-800 cursor-pointer">常見問題</button>
+                <button onclick="switchTab('franchise')" id="nav-btn-franchise" class="nav-tab-btn px-3.5 py-2 rounded-xl transition-all text-slate-300 hover:text-white hover:bg-slate-800 cursor-pointer">U-Turn加盟</button>
             </div>
 
             <!-- 右側功能按鈕 -->
@@ -76,7 +76,7 @@
             <button onclick="switchTab('transfer-guide'); toggleMobileMenu();" class="block w-full text-left text-slate-300 hover:text-blue-400 py-2 font-medium">過戶指南</button>
             <button onclick="switchTab('steps'); toggleMobileMenu();" class="block w-full text-left text-slate-300 hover:text-blue-400 py-2 font-medium">使用步驟</button>
             <button onclick="switchTab('testimonials'); toggleMobileMenu();" class="block w-full text-left text-slate-300 hover:text-blue-400 py-2 font-medium">用戶見證</button>
-            <button onclick="switchTab('faq'); toggleMobileMenu();" class="block w-full text-left text-slate-300 hover:text-blue-400 py-2 font-medium">常見問題</button>
+            <button onclick="switchTab('franchise'); toggleMobileMenu();" class="block w-full text-left text-slate-300 hover:text-blue-400 py-2 font-medium">U-Turn加盟</button>
             <div class="pt-3 border-t border-slate-800 flex flex-col gap-2">
                 <a href="https://play.google.com/store/apps/details?id=com.uturn.car.app" target="_blank" class="block text-center bg-blue-600 text-white font-bold py-2.5 rounded-2xl shadow">
                     立即下載 App
@@ -413,7 +413,7 @@
                     <div class="bg-white p-8 rounded-3xl shadow-lg shadow-slate-200/50 border border-slate-100 text-center">
                         <div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-inner">🛡️</div>
                         <h4 class="font-bold text-slate-900 text-lg mb-2">代辦貸款結清</h4>
-                        <p class="text-slate-600 text-xs md:text-sm leading-relaxed">子還有車貸尚未繳清沒關係！我們協助代辦結清、塗銷與過戶手續。</p>
+                        <p class="text-slate-600 text-xs md:text-sm leading-relaxed">車子還有車貸尚未繳清沒關係！我們協助代辦結清、塗銷與過戶手續。</p>
                     </div>
                 </div>
             </div>
@@ -635,55 +635,81 @@
             </div>
         </section>
 
-        <!-- 分頁 10：常見問題 (FAQ Tab) -->
-        <section id="tab-faq" class="tab-content hidden">
-            <div class="max-w-4xl mx-auto">
-                <div class="text-center mb-16">
-                    <span class="text-blue-600 font-bold text-xs uppercase tracking-widest bg-blue-50 px-3.5 py-1.5 rounded-full border border-blue-100">FAQ</span>
-                    <h2 class="text-3xl md:text-4xl font-extrabold mt-3 mb-4 text-slate-900 tracking-tight">常見問題</h2>
-                    <p class="text-slate-600 text-base">解答您對於 U-Turn 轉角好車與會員聊天室系統的各種疑問？</p>
+        <!-- 分頁 10：U-Turn加盟 (Franchise Tab) -->
+        <section id="tab-franchise" class="tab-content hidden">
+            <div class="max-w-4xl mx-auto space-y-10">
+                <div class="bg-gradient-to-br from-slate-900 via-blue-950 to-indigo-950 text-white rounded-3xl p-8 md:p-12 shadow-2xl border border-slate-800 text-center">
+                    <span class="text-blue-400 font-bold text-xs uppercase tracking-widest bg-blue-900/60 px-3.5 py-1.5 rounded-full border border-blue-700/50">U-TURN FRANCHISE PARTNER</span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold mt-3 mb-4 tracking-tight">🤝 U-Turn 加盟專區 · 共創共贏</h2>
+                    <p class="text-slate-300 text-base leading-relaxed max-w-2xl mx-auto">誠摯邀請全台優質車商、車界夥伴及需要收車服務的客戶加入 U-Turn 轉角好車加盟體系，共創透明、高效率的中古車與新車交易新藍海！</p>
+                    
+                    <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+                        <a href="tel:0986510996" class="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-6 py-3.5 rounded-2xl shadow-lg transition-all flex items-center gap-2">
+                            <span>📞</span> 立即撥打電話：0986510996
+                        </a>
+                        <a href="https://line.me/ti/p/V2jHA4sh5F" target="_blank" class="bg-sky-500 hover:bg-sky-400 text-white font-extrabold px-6 py-3.5 rounded-2xl shadow-lg transition-all flex items-center gap-2">
+                            <span>💬</span> LINE 快速線上估價
+                        </a>
+                    </div>
                 </div>
-                
-                <div class="space-y-4">
-                    <details class="bg-white p-6 md:p-8 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 group transition-all">
-                        <summary class="font-bold text-lg text-slate-900 cursor-pointer flex justify-between items-center select-none">
-                            會員登入需要填寫哪些資料？會員點數如何查詢？
-                            <span class="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center group-open:rotate-180 transition-transform shadow-xs">▼</span>
-                        </summary>
-                        <p class="mt-4 text-slate-600 leading-relaxed text-sm md:text-base border-t border-slate-100 pt-4">
-                            點擊右上角「會員登入」，同時輸入您的<strong>「姓名」</strong>與<strong>「會員編號 ID」</strong>，系統會至資料庫 `member_points` 表進行雙重比對[cite: 1]，吻合即可成功登入並隨時檢視您的紅利點數與帳戶狀態！
-                        </p>
-                    </details>
 
-                    <details class="bg-white p-6 md:p-8 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 group transition-all">
-                        <summary class="font-bold text-lg text-slate-900 cursor-pointer flex justify-between items-center select-none">
-                            為什麼使用聊天室必須先登入會員？
-                            <span class="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center group-open:rotate-180 transition-transform shadow-xs">▼</span>
-                        </summary>
-                        <p class="mt-4 text-slate-600 leading-relaxed text-sm md:text-base border-t border-slate-100 pt-4">
-                            為了確保買賣雙方都能享有安全、真實的溝通環境並防止惡意洗版，U-Turn 聊天系統強制要求必須登入會員（具備有效的 `sender_id` 與 `sender_name`）才能夠傳送與接收私訊訊息[cite: 1]。
-                        </p>
-                    </details>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- 車商加盟 -->
+                    <div class="bg-white p-8 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 flex flex-col justify-between space-y-6">
+                        <div>
+                            <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-2xl font-bold mb-4 shadow-inner">🏢</div>
+                            <h3 class="text-xl font-extrabold text-slate-900 mb-3">提供車商 · 數位轉型與豐富車源</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                                針對全台實體車商與中古車行，U-Turn 提供強大數位車源大廳、即時會員聊天室、自動化雲端圖片儲存與精準客源對接，助您突破地域限制，提升成交率！
+                            </p>
+                            <ul class="space-y-2.5 text-slate-700 text-sm">
+                                <li class="flex items-center gap-2">✅ <strong>專屬車商曝光版位</strong>，大量買家主動上門。</li>
+                                <li class="flex items-center gap-2">✅ <strong>即時線上聊天系統</strong>，安全高效洽談。</li>
+                                <li class="flex items-center gap-2">✅ <strong>APP 與網頁同步曝光</strong>，雙軌行銷更強大。</li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100">
+                            <a href="https://line.me/ti/p/V2jHA4sh5F" target="_blank" class="block text-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-2xl transition-all shadow-md">
+                                車商加盟洽詢
+                            </a>
+                        </div>
+                    </div>
 
-                    <details class="bg-white p-6 md:p-8 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 group transition-all">
-                        <summary class="font-bold text-lg text-slate-900 cursor-pointer flex justify-between items-center select-none">
-                            在 U-Turn 刊登賣車需要收費嗎？
-                            <span class="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center group-open:rotate-180 transition-transform shadow-xs">▼</span>
-                        </summary>
-                        <p class="mt-4 text-slate-600 leading-relaxed text-sm md:text-base border-t border-slate-100 pt-4">
-                            必須登入會員後即可免費使用個人賣車系統上架愛車[cite: 1]，圖片自動上傳至 Supabase Storage，直接對接買家無須負擔高額仲介費！
-                        </p>
-                    </details>
+                    <!-- 需要收車客戶合作 -->
+                    <div class="bg-white p-8 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 flex flex-col justify-between space-y-6">
+                        <div>
+                            <div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl font-bold mb-4 shadow-inner">🤝</div>
+                            <h3 class="text-xl font-extrabold text-slate-900 mb-3">提供需要收車客戶 · 高價收購與到府估價</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                                無論您是手上有車想快速變現的車主、需要代收車源的經紀人，或需要全台專業收車支援的合作夥伴，U-Turn 提供市場最高價、專業到府估價與貸款結清代辦服務。
+                            </p>
+                            <ul class="space-y-2.5 text-slate-700 text-sm">
+                                <li class="flex items-center gap-2">✅ <strong>專業估價師免費到府</strong>，免奔波最省時。</li>
+                                <li class="flex items-center gap-2">✅ <strong>高價現金/匯款交車</strong>，安全透明有保障。</li>
+                                <li class="flex items-center gap-2">✅ <strong>代辦貸款結清與過戶</strong>，一條龍快速搞定。</li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100">
+                            <a href="tel:0986510996" class="block text-center bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-2xl transition-all shadow-md">
+                                立即聯絡收車專線
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-                    <details class="bg-white p-6 md:p-8 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 group transition-all">
-                        <summary class="font-bold text-lg text-slate-900 cursor-pointer flex justify-between items-center select-none">
-                            高價收車的估價流程與聯繫方式為何？
-                            <span class="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center group-open:rotate-180 transition-transform shadow-xs">▼</span>
-                        </summary>
-                        <p class="mt-4 text-slate-600 leading-relaxed text-sm md:text-base border-t border-slate-100 pt-4">
-                            您可以直接撥打專線 <strong>0986510996</strong> 或透過 LINE（<a href="https://line.me/ti/p/V2jHA4sh5F" target="_blank" class="text-blue-600 underline">https://line.me/ti/p/V2jHA4sh5F</a>）聯繫我們[cite: 1]。或至「高價收車」分頁填寫預約單，我們將由專業估價師提供高於市場行情的收購價與免費到府估價服務[cite: 1]。
-                        </p>
-                    </details>
+                <!-- 聯絡方式資訊卡片 -->
+                <div class="bg-gradient-to-br from-slate-900 to-slate-800 text-white p-8 md:p-10 rounded-3xl shadow-2xl border border-slate-700 text-center space-y-6">
+                    <h3 class="text-2xl font-extrabold tracking-tight">立即聯繫 U-Turn 加盟與收車團隊</h3>
+                    <p class="text-slate-300 text-sm max-w-xl mx-auto">無論車商加盟合作或收車需求，歡迎隨時透過以下方式與我們聯繫，將有專人為您服務！</p>
+                    
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+                        <a href="tel:0986510996" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-8 py-4 rounded-2xl shadow-lg transition-all flex items-center justify-center gap-3 text-lg">
+                            <span>📞</span> 立即撥打電話：0986510996
+                        </a>
+                        <a href="https://line.me/ti/p/V2jHA4sh5F" target="_blank" class="w-full sm:w-auto bg-sky-500 hover:bg-sky-400 text-white font-extrabold px-8 py-4 rounded-2xl shadow-lg transition-all flex items-center justify-center gap-3 text-lg">
+                            <span>💬</span> LINE 快速線上估價
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
