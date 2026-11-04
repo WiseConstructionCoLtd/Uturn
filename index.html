@@ -1269,7 +1269,7 @@
             document.getElementById('line-qr-modal').classList.add('hidden');
         }
 
-        // 5. 「我的刊登汽車」渲染與下架管理邏輯
+        // 5. 「我的刊登汽車」渲染、搜尋與下架管理邏輯
         function renderMyCars() {
             const container = document.getElementById('my-cars-container');
             const savedMember = localStorage.getItem('uturn_member') || sessionStorage.getItem('uturn_member');
@@ -1306,46 +1306,93 @@
             }
 
             container.innerHTML = `
-                <div class="mb-6 flex items-center justify-between bg-white px-6 py-4 rounded-2xl shadow-sm border border-slate-100">
-                    <span class="text-sm font-bold text-slate-700">目前登入：<span class="text-blue-600">${currentMember.name}</span> (ID: ${currentMember.id})</span>
-                    <span class="text-xs bg-blue-50 text-blue-700 px-3 py-1 rounded-xl font-bold border border-blue-100">刊登中車輛：${myCars.length} 輛</span>
-                </div>
-                <div class="grid md:grid-cols-2 gap-6">
-                    ${myCars.map(car => {
-                        let imageUrl = car.image_url;
-                        if (!imageUrl && car.image_urls && car.image_urls.length > 0) imageUrl = car.image_urls[0];
-                        if (!imageUrl) imageUrl = 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80';
-                        const formattedPrice = car.price ? `NT$ ${Number(car.price).toLocaleString()}` : '價格面議';
+                <div class="space-y-6">
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white px-6 py-4 rounded-2xl shadow-sm border border-slate-100">
+                        <span class="text-sm font-bold text-slate-700">目前登入：<span class="text-blue-600">${currentMember.name}</span> (ID: ${currentMember.id})</span>
+                        <span class="text-xs bg-blue-50 text-blue-700 px-3 py-1 rounded-xl font-bold border border-blue-100">刊登中車輛：${myCars.length} 輛</span>
+                    </div>
 
-                        return `
-                            <div class="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden flex flex-col justify-between">
-                                <div class="cursor-pointer" onclick="showCarDetail(${car.id})">
-                                    <div class="relative h-48 overflow-hidden bg-slate-100">
-                                        <img src="${imageUrl}" class="w-full h-full object-cover">
-                                        ${car.condition ? `<span class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">${car.condition}</span>` : ''}
-                                        <span class="absolute top-3 right-3 bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">🟢 刊登中</span>
-                                    </div>
-                                    <div class="p-6">
-                                        <div class="text-lg font-bold text-slate-900 mb-1 line-clamp-1">${car.title || '無標題車輛'}</div>
-                                        <div class="text-xl font-extrabold text-blue-600 mb-3">${formattedPrice}</div>
-                                        <div class="flex flex-wrap gap-2 text-xs text-slate-500 mb-3">
-                                            ${car.year ? `<span>📅 ${car.year}年</span>` : ''}
-                                            ${car.location ? `<span>📍 ${car.location}</span>` : ''}
-                                            ${car.phone ? `<span>📞 ${car.phone}</span>` : ''}
-                                        </div>
-                                        ${car.description ? `<p class="text-slate-600 text-xs line-clamp-2 leading-relaxed">${car.description}</p>` : ''}
-                                    </div>
-                                </div>
-                                <div class="p-6 pt-0 border-t border-slate-100 mt-2">
-                                    <button onclick="deleteMyCar(${car.id})" class="w-full bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 font-bold py-3 rounded-2xl transition-all shadow-sm cursor-pointer text-sm flex items-center justify-center gap-2">
-                                        <span>🗑️</span> 下架此車 (從資料庫刪除)
-                                    </button>
-                                </div>
-                            </div>
-                        `;
-                    }).join('')}
+                    <!-- 我的刊登車輛搜尋欄位 -->
+                    <div class="bg-white/90 backdrop-blur-md rounded-2xl p-4 shadow-sm border border-slate-100">
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">🔍</span>
+                            <input type="text" id="my-cars-search-input" placeholder="搜尋我刊登的車款名稱、描述或地點..." oninput="filterMyCars()" class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all shadow-inner">
+                        </div>
+                    </div>
+
+                    <div id="my-cars-grid" class="grid md:grid-cols-2 gap-6">
+                        ${renderMyCarsCards(myCars)}
+                    </div>
                 </div>
             `;
+        }
+
+        function filterMyCars() {
+            const searchInput = document.getElementById('my-cars-search-input');
+            if (!searchInput) return;
+            const keyword = searchInput.value.toLowerCase().trim();
+
+            const savedMember = localStorage.getItem('uturn_member') || sessionStorage.getItem('uturn_member');
+            if (!savedMember) return;
+            const currentMember = JSON.parse(savedMember);
+
+            const myCars = allCars.filter(car => Number(car.seller_id) === Number(currentMember.id));
+            const filtered = myCars.filter(car => {
+                const titleMatch = (car.title || '').toLowerCase().includes(keyword);
+                const descMatch = (car.description || '').toLowerCase().includes(keyword);
+                const locationMatch = (car.location || '').toLowerCase().includes(keyword);
+                return !keyword || titleMatch || descMatch || locationMatch;
+            });
+
+            const grid = document.getElementById('my-cars-grid');
+            if (!grid) return;
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-12 text-slate-400 bg-white rounded-2xl border border-slate-100 shadow-sm">
+                        <p class="text-sm font-bold text-slate-600 mb-1">找不到符合搜尋條件的刊登車輛</p>
+                        <p class="text-xs text-slate-400">請嘗試輸入其他關鍵字</p>
+                    </div>
+                `;
+            } else {
+                grid.innerHTML = renderMyCarsCards(filtered);
+            }
+        }
+
+        function renderMyCarsCards(cars) {
+            return cars.map(car => {
+                let imageUrl = car.image_url;
+                if (!imageUrl && car.image_urls && car.image_urls.length > 0) imageUrl = car.image_urls[0];
+                if (!imageUrl) imageUrl = 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80';
+                const formattedPrice = car.price ? `NT$ ${Number(car.price).toLocaleString()}` : '價格面議';
+
+                return `
+                    <div class="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden flex flex-col justify-between">
+                        <div class="cursor-pointer" onclick="showCarDetail(${car.id})">
+                            <div class="relative h-48 overflow-hidden bg-slate-100">
+                                <img src="${imageUrl}" class="w-full h-full object-cover">
+                                ${car.condition ? `<span class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">${car.condition}</span>` : ''}
+                                <span class="absolute top-3 right-3 bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">🟢 刊登中</span>
+                            </div>
+                            <div class="p-6">
+                                <div class="text-lg font-bold text-slate-900 mb-1 line-clamp-1">${car.title || '無標題車輛'}</div>
+                                <div class="text-xl font-extrabold text-blue-600 mb-3">${formattedPrice}</div>
+                                <div class="flex flex-wrap gap-2 text-xs text-slate-500 mb-3">
+                                    ${car.year ? `<span>📅 ${car.year}年</span>` : ''}
+                                    ${car.location ? `<span>📍 ${car.location}</span>` : ''}
+                                    ${car.phone ? `<span>📞 ${car.phone}</span>` : ''}
+                                </div>
+                                ${car.description ? `<p class="text-slate-600 text-xs line-clamp-2 leading-relaxed">${car.description}</p>` : ''}
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0 border-t border-slate-100 mt-2">
+                            <button onclick="deleteMyCar(${car.id})" class="w-full bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 font-bold py-3 rounded-2xl transition-all shadow-sm cursor-pointer text-sm flex items-center justify-center gap-2">
+                                <span>🗑️</span> 下架此車 (從資料庫刪除)
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
         }
 
         async function deleteMyCar(carId) {
@@ -1889,7 +1936,7 @@
             } catch (err) {
                 console.error(err);
                 publishError.textContent = '刊登失敗，請檢查網路連線或照片檔案大小。';
-                publishError.classList.remove('hidden');
+                publishError.classList.add('hidden');
             } finally {
                 submitPublishBtn.textContent = '🚀 確認送出並刊登汽車到資料庫';
                 submitPublishBtn.disabled = false;
