@@ -901,7 +901,7 @@
             if (tabId === 'chat-room') {
                 const savedMember = localStorage.getItem('uturn_member') || sessionStorage.getItem('uturn_member');
                 if (!savedMember) {
-                    alert('⚠️ 必須先登入會員才能使用聊天室系統！');
+                    alert('⚠️ 必須先登入會員才能使用聊天室系統！，避開機器人打擾會員');
                     openLoginModal();
                     return;
                 } else {
