@@ -1991,7 +1991,7 @@
         async function openChatModal(sellerId, sellerName, carTitle) {
             const savedMember = localStorage.getItem('uturn_member') || sessionStorage.getItem('uturn_member');
             if (!savedMember) {
-                alert('⚠️ 必須先登入會員才能使用私訊聊天系統！');
+                alert('⚠️ 必須先登入會員才能使用私訊聊天系統！，避開機器人打擾會員');
                 loginModal.classList.remove('hidden');
                 return;
             }
