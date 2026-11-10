@@ -23,6 +23,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- QRCode.js 用於產生 LINE 二維碼小視窗 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- JSZip 用於將汽車全部圖片打包成 ZIP 壓縮檔（解壓後即為以車名命名的資料夾） -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 </head>
 <body class="bg-gradient-to-br from-slate-50 via-blue-50/20 to-slate-100 text-slate-900 font-sans antialiased selection:bg-blue-600 selection:text-white min-h-screen">
 
@@ -94,7 +96,7 @@
         
         <!-- 分頁 1：車源大廳 (Cars Tab) -->
         <section id="tab-cars" class="tab-content">
-            <!-- 即時動態公告條 (讓網站非常有在更新的感覺) -->
+            <!-- 即時動態公告條 -->
             <div class="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white rounded-2xl p-4 mb-8 shadow-lg flex flex-col sm:flex-row items-center justify-between gap-3 border border-blue-700/40">
                 <div class="flex items-center gap-3">
                     <span class="bg-blue-600 text-white text-xs font-black px-2.5 py-1 rounded-lg uppercase tracking-wider flex items-center gap-1.5 shadow">
@@ -209,7 +211,7 @@
             </div>
         </section>
 
-        <!-- 分頁 2：聊天室專區 (Chat Room Tab - 必須登入會員) -->
+        <!-- 分頁 2：聊天室專區 (Chat Room Tab) -->
         <section id="tab-chat-room" class="tab-content hidden">
             <div class="max-w-4xl mx-auto space-y-6">
                 <div class="bg-gradient-to-br from-slate-900 to-blue-950 text-white rounded-3xl p-8 shadow-2xl border border-slate-800 text-center">
@@ -387,7 +389,7 @@
                 <div class="bg-gradient-to-br from-slate-900 to-indigo-950 text-white rounded-3xl p-8 md:p-12 shadow-2xl border border-slate-800 text-center">
                     <span class="text-indigo-400 font-bold text-xs uppercase tracking-widest bg-indigo-900/60 px-3.5 py-1.5 rounded-full border border-indigo-700/50">MY LISTED CARS</span>
                     <h2 class="text-3xl md:text-4xl font-extrabold mt-3 mb-4 tracking-tight">📋 我的刊登汽車 · 車源管理系統</h2>
-                    <p class="text-slate-300 text-base leading-relaxed max-w-2xl mx-auto">在此檢視您目前在 U-Turn 所刊登的所有愛車，並可直接進行即時下架管理。</p>
+                    <p class="text-slate-300 text-base leading-relaxed max-w-2xl mx-auto">在此檢視您目前在 U-Turn 所刊登的所有愛車，可直接下載車輛圖片資料夾或進行即時下架管理。</p>
                 </div>
 
                 <!-- 動態載入容器 -->
@@ -1301,7 +1303,7 @@
             document.getElementById('line-qr-modal').classList.add('hidden');
         }
 
-        // 5. 「我的刊登汽車」渲染、搜尋與下架管理邏輯
+        // 5. 「我的刊登汽車」渲染、搜尋、下載圖片與下架管理邏輯
         function renderMyCars() {
             const container = document.getElementById('my-cars-container');
             const savedMember = localStorage.getItem('uturn_member') || sessionStorage.getItem('uturn_member');
@@ -1417,7 +1419,10 @@
                                 ${car.description ? `<p class="text-slate-600 text-xs line-clamp-2 leading-relaxed">${car.description}</p>` : ''}
                             </div>
                         </div>
-                        <div class="p-6 pt-0 border-t border-slate-100 mt-2">
+                        <div class="p-6 pt-0 border-t border-slate-100 mt-2 space-y-2">
+                            <button onclick="downloadAllCarImages(${car.id})" class="w-full bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 font-bold py-3 rounded-2xl transition-all shadow-sm cursor-pointer text-sm flex items-center justify-center gap-2">
+                                <span>📥</span> 下載汽車全部圖片 (打包為資料夾)
+                            </button>
                             <button onclick="deleteMyCar(${car.id})" class="w-full bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 font-bold py-3 rounded-2xl transition-all shadow-sm cursor-pointer text-sm flex items-center justify-center gap-2">
                                 <span>🗑️</span> 下架此車 (從資料庫刪除)
                             </button>
@@ -1425,6 +1430,60 @@
                     </div>
                 `;
             }).join('');
+        }
+
+        // 下載汽車全部圖片：打包成以汽車標題命名的資料夾 (ZIP 壓縮檔下載)
+        async function downloadAllCarImages(carId) {
+            const car = allCars.find(c => Number(c.id) === Number(carId));
+            if (!car) return;
+
+            let images = car.image_urls || [];
+            if (images.length === 0 && car.image_url) {
+                images = [car.image_url];
+            }
+
+            if (images.length === 0) {
+                alert('⚠️ 該車輛沒有可下載的圖片！');
+                return;
+            }
+
+            const cleanTitle = (car.title || '汽車圖片').replace(/[\\/:*?"<>|]/g, '_');
+            
+            alert(`📦 正在將「${car.title}」的 ${images.length} 張圖片打包成資料夾，請稍候...`);
+
+            try {
+                const zip = new JSZip();
+                // 建立以汽車標題命名的資料夾
+                const folder = zip.folder(cleanTitle);
+
+                for (let i = 0; i < images.length; i++) {
+                    const imgUrl = images[i];
+                    try {
+                        const response = await fetch(imgUrl);
+                        if (!response.ok) throw new Error('Network response was not ok');
+                        const blob = await response.blob();
+                        const fileName = `相片_${i + 1}.jpg`;
+                        folder.file(fileName, blob);
+                    } catch (err) {
+                        console.warn(`第 ${i + 1} 張圖片抓取失敗 (可能受跨域限制):`, err);
+                        folder.file(`圖片_${i + 1}_連結.txt`, `圖片網址: ${imgUrl}`);
+                    }
+                }
+
+                const content = await zip.generateAsync({ type: "blob" });
+                const url = window.URL.createObjectURL(content);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${cleanTitle}.zip`;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                window.URL.revokeObjectURL(url);
+                alert(`✅ 「${car.title}」圖片資料夾已成功打包下載！`);
+            } catch (err) {
+                console.error('打包下載失敗:', err);
+                alert('打包下載失敗，請檢查網路連線或稍後再試。');
+            }
         }
 
         async function deleteMyCar(carId) {
@@ -1828,7 +1887,6 @@
                 throw new Error(`上傳至 Supabase Storage 失敗: ${errText}`);
             }
 
-            // 回傳標準公開網路 URL (https://...) 供網頁與 Flutter 手機 App CachedNetworkImage 秒開讀取
             return `${SUPABASE_URL}/storage/v1/object/public/car-images/${fileName}`;
         }
 
@@ -1843,7 +1901,6 @@
             try {
                 for (let i = 0; i < files.length; i++) {
                     const compressedBase64 = await compressImage(files[i]);
-                    // 自動上傳至 Supabase Storage 取得公開 URL
                     const publicUrl = await uploadImageToSupabaseStorage(compressedBase64);
                     uploadedCarImageUrls.push(publicUrl);
                 }
