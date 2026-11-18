@@ -7,14 +7,45 @@
     <!-- 搜尋引擎標題 -->
     <title>U-Turn 轉角好車 | 車源大廳、高價收車、車貸試算與會員聊天室平台 (2026 最新動態)</title>
 
-    <!-- 網站圖示 (Favicon & App Icons) 完整設定 -->
-    <link rel="shortcut icon" type="image/x-icon" href="https://raw.githubusercontent.com/WiseConstructionCoLtd/Uturn/refs/heads/main/favicon.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://github.com/WiseConstructionCoLtd/Uturn/blob/main/favicon-16x16.png?raw=true">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://github.com/WiseConstructionCoLtd/Uturn/blob/main/favicon-32x32.png?raw=true">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://github.com/WiseConstructionCoLtd/Uturn/blob/main/apple-touch-icon.png?raw=true">
-    <link rel="icon" type="image/png" sizes="192x192" href="https://github.com/WiseConstructionCoLtd/Uturn/blob/main/android-chrome-192x192.png?raw=true">
-    <link rel="icon" type="image/png" sizes="512x512" href="https://github.com/WiseConstructionCoLtd/Uturn/blob/main/android-chrome-512x512.png?raw=true">
-    <link rel="manifest" href="site.webmanifest">
+    <!-- ============================================================
+         網站圖示 (Favicon & App Icons) 完整設定
+         圖示來源：GitHub 儲存庫 WiseConstructionCoLtd/Uturn 根目錄
+         全部使用 raw.githubusercontent.com 直連，避免 github.com/blob
+         的 302 轉址造成部分瀏覽器／爬蟲取不到圖示。
+         ============================================================ -->
+
+    <!-- 1. 傳統 ICO（IE / 舊版 Edge / 書籤列 / 部分 RSS 閱讀器）
+            favicon.ico 內含 16x16、32x32、48x48 三種尺寸 -->
+    <link rel="icon" href="https://raw.githubusercontent.com/WiseConstructionCoLtd/Uturn/main/favicon.ico" sizes="any">
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/WiseConstructionCoLtd/Uturn/main/favicon.ico" type="image/x-icon">
+
+    <!-- 2. 標準 PNG favicon（Chrome / Firefox / Safari / Edge 主要使用這組） -->
+    <link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/WiseConstructionCoLtd/Uturn/main/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/WiseConstructionCoLtd/Uturn/main/favicon-32x32.png">
+
+    <!-- 3. iOS 主畫面書籤圖示（iPhone / iPad 加入主畫面） -->
+    <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/WiseConstructionCoLtd/Uturn/main/apple-touch-icon.png">
+
+    <!-- 4. Android / PWA 高解析度圖示 -->
+    <link rel="icon" type="image/png" sizes="192x192" href="https://raw.githubusercontent.com/WiseConstructionCoLtd/Uturn/main/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="https://raw.githubusercontent.com/WiseConstructionCoLtd/Uturn/main/android-chrome-512x512.png">
+
+    <!-- 5. PWA Manifest（可安裝為 App）
+            預設用絕對網址，單獨搬移這個 HTML 也不會 404。
+            若你把 site.webmanifest 放在與本 HTML 同一個目錄，可改成 href="site.webmanifest"。 -->
+    <link rel="manifest" href="https://raw.githubusercontent.com/WiseConstructionCoLtd/Uturn/main/site.webmanifest">
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+
+    <!-- 6. 瀏覽器 / 系統介面配色（與本站 slate-900 導覽列一致） -->
+    <meta name="theme-color" content="#0f172a">
+    <meta name="msapplication-TileColor" content="#0f172a">
+    <meta name="msapplication-TileImage" content="https://raw.githubusercontent.com/WiseConstructionCoLtd/Uturn/main/android-chrome-192x192.png">
+
+    <!-- 7. 加入主畫面後的 App 名稱 -->
+    <meta name="application-name" content="U-Turn 轉角好車">
+    <meta name="apple-mobile-web-app-title" content="U-Turn 轉角好車">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     
     <meta name="description" content="U-Turn 轉角好車官方網站。提供分頁車源大廳、刊登賣車、會員即時聊天室、高價收車、車貸試算與會員點數系統。每日即時更新全台優質車源。">
     <meta name="keywords" content="U-Turn, 轉角好車, 車源大廳, 聊天室, 刊登賣車, 高價收車, 車貸試算, 會員中心平台">
